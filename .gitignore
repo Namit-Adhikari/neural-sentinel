@@ -1,0 +1,9 @@
+.venv
+venv
+*.csv
+*.zip
+
+data/original/*
+!data/original/.gitkeep
+data/synthetic/*
+!data/synthetic/.gitkeep
