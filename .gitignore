@@ -5,7 +5,7 @@ venv
 *.pdf
 .kiro
 
-# Data directories (git-ignored per AGENTS.md §10.4)
+# Data directories (git-ignored per AGENTS.md §10.5)
 data/original/*
 !data/original/.gitkeep
 data/interim/*
