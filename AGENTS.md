@@ -183,7 +183,9 @@ neural-sentinel/
 ├── AGENTS.md                  # THIS FILE — context for AI agents
 ├── README.md                  # Project overview, setup, usage (public-facing)
 ├── .gitignore                 # Standard Python + Kaggle + data ignores
-├── requirements.txt           # Pinned dependencies
+├── .python-version            # Pins Python 3.12.13 for uv (committed to repo)
+├── requirements.txt           # Pinned dependencies (pip + uv)
+├── environment.yml            # Conda environment spec (secondary — conda users)
 ├── pyproject.toml             # Modern Python project config (optional)
 │
 ├── data/
@@ -472,7 +474,7 @@ When injecting AML patterns, the generator must create the following realistic t
 ## 10. Coding Standards & Best Practices
 
 ### 10.1 Python Conventions
-- Python 3.10+ (Kaggle default)
+- Python 3.12.13 (pinned — local dev uses uv; Kaggle uses system Python 3.12)
 - Type hints on all function signatures
 - Docstrings on all public classes and functions (Google style)
 - Maximum function length: 50 lines (refactor if longer)
@@ -482,10 +484,61 @@ When injecting AML patterns, the generator must create the following realistic t
 
 ### 10.2 Dependencies Management
 - Pin all dependencies with exact versions in `requirements.txt`
-- Core dependencies: `pandas`, `numpy`, `scikit-learn`, `sdv`, `torch`, `torch_geometric`, `catboost`, `lightgbm`, `xgboost`, `shap`, `pydantic`, `pyarrow`
-- Avoid heavyweight dependencies unless justified (e.g., no TensorFlow — use PyTorch only)
+- Python version pinned to **3.12.13** via `.python-version` (uv) and `environment.yml` (conda)
+- Pinned versions (current):
 
-### 10.3 Kaggle-Specific Practices
+| Package | Version | Notes |
+|---|---|---|
+| `pandas` | 2.2.3 | Last 2.x LTS; stable for Python 3.12 |
+| `numpy` | 2.2.6 | numpy 2.x series; required for catboost 1.2.10+ compat |
+| `scikit-learn` | 1.6.1 | Latest stable |
+| `sdv` | 1.17.2 | Pure Python; pip-only (no conda wheel) |
+| `torch` | 2.5.1 | Python 3.12 supported; CPU wheel on PyPI |
+| `torch-geometric` | 2.6.1 | pip-only; depends on torch 2.5.x |
+| `catboost` | 1.2.10 | First release with numpy 2.x support |
+| `lightgbm` | 4.6.0 | Latest stable |
+| `xgboost` | 2.1.4 | Latest stable in 2.x series |
+| `shap` | 0.46.0 | Compatible with numpy ≤ 2.2 (numba constraint) |
+| `pydantic` | 2.12.5 | Latest stable |
+| `pyarrow` | 20.0.0 | Latest stable; Python 3.12 supported |
+| `pytest` | 8.3.5 | Latest stable |
+| `hypothesis` | 6.131.15 | Latest stable |
+| `tqdm` | 4.67.1 | Latest stable |
+| `joblib` | 1.4.2 | Latest stable |
+
+- Avoid heavyweight dependencies unless justified (e.g., no TensorFlow — use PyTorch only)
+- When adding a new dependency, update both `requirements.txt` and `environment.yml`
+
+### 10.3 Environment Setup
+
+**uv is the primary package manager for local development.** pip and conda are supported as secondary options. Kaggle manages its own environment independently.
+
+**Primary — uv:**
+```bash
+uv venv
+uv pip install -r requirements.txt
+uv run python <script>
+```
+
+**Secondary — pip:**
+```bash
+python -m venv venv
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # Linux/macOS
+pip install -r requirements.txt
+```
+
+**Secondary — conda:**
+```bash
+conda env create -f environment.yml
+conda activate neural-sentinel
+```
+
+**Kaggle:** Uses its own pre-installed environment. Manage missing packages via `!pip install -q` at the top of each notebook. Do not assume local venv is available on Kaggle.
+
+The `.python-version` file at the project root pins `3.12.13` and is picked up automatically by uv. Do not delete or modify it.
+
+### 10.4 Kaggle-Specific Practices
 - At the top of every notebook, include a "Setup" cell that:
   - Detects and logs GPU/TPU availability
   - Installs any missing packages via `!pip install -q`
@@ -495,19 +548,19 @@ When injecting AML patterns, the generator must create the following realistic t
 - Profile memory usage before and after loading/generating large DataFrames
 - For GNN training, batch graph construction — do not load the entire 5M-row graph into memory at once; use `torch_geometric.loader.NeighborLoader` or similar
 
-### 10.4 Git Hygiene
+### 10.5 Git Hygiene
 - `.gitignore` must exclude: `data/original/`, `data/interim/`, `data/generated/`, `.ipynb_checkpoints/`, `__pycache__/`, `.env`, `*.pyc`, `models/` (saved model files)
-- Commit messages: conventional commits format (`feat:`, `fix:`, `docs:`, `refactor:`, `chore:`)
+- Commit messages: conventional commits format (`feat:`, `fix:`, `docs:`, `refactor:`, `chore:`); must be brief, precise, and one line (e.g. `feat: add velocity agent rolling window features`)
 - Never commit large files (> 5MB) — use Git LFS or store externally
 - Never commit API keys, credentials, or personal data
 
-### 10.5 Testing
+### 10.6 Testing
 - Use `pytest` for all `src/` module tests
 - Tests must be runnable on CPU without GPU
 - Each agent must have at least: (1) a test that it initializes correctly, (2) a test that `predict()` returns correctly shaped output, (3) a test that it handles missing data gracefully
 - Data contract tests must validate schema compliance (correct types, allowed values, no nulls in required fields)
 
-### 10.6 Configuration Management
+### 10.7 Configuration Management
 - All magic numbers, thresholds, file paths, and hyperparameters live in `src/utils/config.py`
 - Use a dataclass or Pydantic `BaseModel` for typed configuration
 - No hardcoded values in agent or generator code — always reference `config`
