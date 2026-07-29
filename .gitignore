@@ -2,8 +2,38 @@
 venv
 *.csv
 *.zip
+*.pdf
+.kiro
 
+# Data directories (git-ignored per AGENTS.md §10.4)
 data/original/*
 !data/original/.gitkeep
-data/synthetic/*
-!data/synthetic/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/generated/*
+!data/generated/.gitkeep
+
+# Python artefacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Testing
+.pytest_cache/
+.hypothesis/
+htmlcov/
+
+# Environment
+.env
+
+# Model artefacts
+models/
+
+# Jupyter / Kaggle
+.ipynb_checkpoints/
+
+# OS
+.DS_Store

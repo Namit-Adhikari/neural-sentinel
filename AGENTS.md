@@ -187,7 +187,7 @@ neural-sentinel/
 ├── pyproject.toml             # Modern Python project config (optional)
 │
 ├── data/
-│   ├── raw/                   # Original uploaded data (git-ignored, .gitkeep only)
+│   ├── original/              # Original uploaded data (git-ignored, .gitkeep only)
 │   │   └── synthetic_financial_data.csv
 │   ├── interim/               # Cleaned, canonical-schema data (git-ignored)
 │   │   ├── transactions.parquet
@@ -429,7 +429,7 @@ The generator must be selected through a **structured benchmark** (not intuition
 
 The 5M row generation must follow this sequence:
 
-1. **Preprocess source data** into canonical schema (`src/cleaning.py`).
+1. **Preprocess source data** from `data/original/` into canonical schema (`src/cleaning.py`).
 2. **Train selected generator** on preprocessed source data.
 3. **Generate base synthetic data** in chunks (500K per chunk) to avoid OOM.
 4. **Inject AML patterns** (`src/generation/aml_pattern_injector.py`):
@@ -496,7 +496,7 @@ When injecting AML patterns, the generator must create the following realistic t
 - For GNN training, batch graph construction — do not load the entire 5M-row graph into memory at once; use `torch_geometric.loader.NeighborLoader` or similar
 
 ### 10.4 Git Hygiene
-- `.gitignore` must exclude: `data/raw/`, `data/interim/`, `data/generated/`, `.ipynb_checkpoints/`, `__pycache__/`, `.env`, `*.pyc`, `models/` (saved model files)
+- `.gitignore` must exclude: `data/original/`, `data/interim/`, `data/generated/`, `.ipynb_checkpoints/`, `__pycache__/`, `.env`, `*.pyc`, `models/` (saved model files)
 - Commit messages: conventional commits format (`feat:`, `fix:`, `docs:`, `refactor:`, `chore:`)
 - Never commit large files (> 5MB) — use Git LFS or store externally
 - Never commit API keys, credentials, or personal data
