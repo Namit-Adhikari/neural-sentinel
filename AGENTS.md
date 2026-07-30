@@ -23,7 +23,7 @@
 
 Nepali banks face rising financial fraud including transaction fraud, money laundering (AML), and cross-border remittance exploitation. Existing rule-based systems produce excessive false positives and miss layered, network-based fraud schemes. This project builds a **multi-agent detection system** where specialized agents score transactions on different risk dimensions, and a meta-learner combines them into a single actionable alert with human-readable explanations.
 
-The target variable (`is_fraud`) is treated as **confirmed criminal fraud** — not merely suspicious. AML-patterned transactions (structuring, layering, mule-account networks) are considered a subset of fraud because GNN-based graph analysis substantially benefits from including them.
+The target variable (`is_fraud`) is treated as a **suspicious transaction flag** — it indicates transactions that have been flagged as suspicious, not confirmed criminal fraud. AML-patterned transactions (structuring, layering, mule-account networks) are considered a subset of suspicious activity because GNN-based graph analysis substantially benefits from including them.
 
 ---
 
@@ -53,8 +53,7 @@ The uploaded dataset (`synthetic_financial_data.csv`, 1,048,575 rows) is an exis
 |---|---|
 | **Row Count** | 1,048,575 |
 | **Format** | Single CSV file |
-| **Fraud Rate** | ~10.0% (high — designed for ML training, not realistic banking prevalence) |
-| **Fraud Count** | ~104,857 fraudulent rows |
+| **Suspicious Transaction Rate** | To be determined — pending EDA on source data |
 
 ### 4.2 Schema (Observed Columns)
 
@@ -72,7 +71,7 @@ The uploaded dataset (`synthetic_financial_data.csv`, 1,048,575 rows) is an exis
 | `merchant_category` | string | Merchant/business category | Values: `retail`, `grocery`, `restaurant`, `utility`, `travel`, `electronics`, `healthcare`, `education`, `entertainment`, `other` |
 | `device_type` | categorical | Device used for transaction | Values: `mobile`, `desktop`, `tablet`, `atm`, `pos_terminal` |
 | `ip_address` | string (IPv4) | Client IP address | Standard IPv4 format |
-| `is_fraud` | binary (int) | Target variable: 0 = legitimate, 1 = fraud | Treated as **confirmed criminal fraud** |
+| `is_fraud` | binary (int) | Target variable: 0 = not suspicious, 1 = suspicious | Treated as a **suspicious transaction flag** |
 
 ### 4.3 Key Observations from EDA
 
@@ -138,7 +137,7 @@ The canonical schema is the **single source of truth** for all data flowing betw
 | `ip_address` | string (IPv4) | Client IP | From source / generated |
 | `ip_country` | string | Geo-located country from IP | Derived/generated |
 | `ip_is_vpn` | binary | Whether IP is a known VPN/proxy | Generated for fraud scenarios |
-| `is_fraud` | binary | Target: confirmed criminal fraud | From source / injected AML patterns |
+| `is_fraud` | binary | Target: suspicious transaction flag (0 = not suspicious, 1 = suspicious) | From source / injected AML patterns |
 | `fraud_type` | categorical | fraud_type for fraud rows | Generated: "transaction_fraud" / "aml_structuring" / "aml_layering" / "aml_mule_network" / "identity_fraud" |
 | `aml_risk_indicator` | binary | 1 if transaction is part of AML pattern | Generated |
 
@@ -253,12 +252,12 @@ neural-sentinel/
 │       └── nepal_context.py        # NRB thresholds, remittance corridors, city lists, etc.
 │
 ├── notebooks/
-│   ├── dev1/                   # Developer 1 notebooks (Kaggle-ready)
+│   ├── data-pipeline/          # Data & generation notebooks (Kaggle-ready)
 │   │   ├── phase1_eda.ipynb
 │   │   ├── phase2_cleaning.ipynb
 │   │   ├── phase3_benchmark_generators.ipynb
 │   │   └── phase4_generate_5m.ipynb
-│   └── dev2/                   # Developer 2 notebooks (Kaggle-ready)
+│   └── detection/              # Detection & agent notebooks (Kaggle-ready)
 │       ├── phase1_agent_interfaces.ipynb
 │       ├── phase2_velocity_geo_agents.ipynb
 │       ├── phase3_behaviour_gnn_agents.ipynb
@@ -626,7 +625,7 @@ Before proceeding to code generation, the following questions should be confirme
 
 1. **Time range for generated data**: Resolved — 1 year. The 5M rows will span 1 year of transaction history. This supports velocity feature windows (1h, 6h, 24h, 7d), seasonal patterns (monthly, quarterly), and day-of-week behavioral patterns.
 
-2. **Fraud rate in 5M dataset**: Deferred — to be decided after EDA. The source data has ~10% fraud rate (unrealistically high). The target rate will be determined after EDA reveals the true distribution and after evaluating the impact on downstream model training.
+2. **Suspicious transaction rate in 5M dataset**: Deferred — to be decided after EDA. The target rate will be determined after EDA reveals the true distribution of the source data and after evaluating the impact on downstream model training.
 
 3. **IP geolocation**: Resolved — no real GeoIP dependency (e.g., MaxMind) will be used in this prototype. Both fields are handled as deterministic post-processing steps after generation:
    - `ip_country`: for domestic transactions, copy directly from the `country` column; for cross-border transactions, assign consistent with the sender's country.
