@@ -51,7 +51,7 @@ class Transaction(BaseModel):
         ip_address: Client IP address (IPv4 format, not validated for performance).
         ip_country: Geo-located country from the IP address; optional.
         ip_is_vpn: 1 if the IP is a known VPN/proxy, else 0.
-        is_fraud: 1 if the transaction is confirmed criminal fraud, else 0.
+        is_fraud: 1 if the transaction is flagged as suspicious, else 0.
         fraud_type: Category of fraud; ``None`` when ``is_fraud`` is 0.
         aml_risk_indicator: 1 if the transaction is part of an AML pattern, else 0.
     """
