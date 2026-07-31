@@ -260,7 +260,6 @@ from src.agents.behaviour_agent import BehaviourAgent
 
 
 def _behaviour_transactions(n: int = 60) -> pd.DataFrame:
-    rng = pd.array([i for i in range(n)])
     accounts = [f"ACC{(i % 5):02d}" for i in range(n)]
     return pd.DataFrame({
         "transaction_id": [f"BT{i:04d}" for i in range(n)],
@@ -347,3 +346,263 @@ def test_behaviour_agent_handles_missing_account_column() -> None:
     # Without account col, _build_sequences raises; predict catches and falls back
     result = agent.predict(data)
     assert len(result) == 2
+
+
+# ---------------------------------------------------------------------------
+# Graph Agent tests
+# ---------------------------------------------------------------------------
+
+from src.agents.graph_agent import GraphAgent
+
+
+def _graph_transactions() -> pd.DataFrame:
+    """Minimal transaction fixture with enough structure to exercise the graph."""
+    return pd.DataFrame({
+        "transaction_id": [f"G{i:03d}" for i in range(12)],
+        "sender_account_id": [
+            "ACC_A", "ACC_B", "ACC_C", "ACC_D",  # fan-out: ACC_A sends to many
+            "ACC_A", "ACC_A", "ACC_A",
+            "ACC_E", "ACC_F", "ACC_G",             # fan-in: many send to ACC_H
+            "ACC_E", "ACC_F",
+        ],
+        "receiver_account_id": [
+            "ACC_B", "ACC_C", "ACC_D", "ACC_E",
+            "ACC_C", "ACC_D", "ACC_E",
+            "ACC_H", "ACC_H", "ACC_H",
+            "ACC_H", "ACC_H",
+        ],
+        "amount_npr": [
+            500_000.0, 200_000.0, 150_000.0, 100_000.0,
+            300_000.0, 250_000.0, 180_000.0,
+            950_000.0, 970_000.0, 930_000.0,
+            960_000.0, 940_000.0,
+        ],
+        "is_cross_border": [0] * 7 + [1] * 5,
+        "is_fraud": [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+    })
+
+
+def test_graph_agent_initializes_correctly() -> None:
+    agent = GraphAgent()
+
+    assert agent.agent_name == "graph"
+    assert not agent.is_fitted
+    assert agent.model_type in ("graphsage", "gat")
+
+
+def test_graph_agent_predict_returns_correct_schema() -> None:
+    data = _graph_transactions()
+    agent = GraphAgent(config={"graph_alert_threshold": 0.3})
+    agent.fit(data)
+    result = agent.predict(data)
+
+    assert list(result.columns) == list(BaseAgent.prediction_columns)
+    assert len(result) == len(data)
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_graph_agent_handles_missing_transaction_id() -> None:
+    result = GraphAgent().predict(pd.DataFrame({"amount_npr": [1000.0]}))
+
+    assert result.empty
+    assert list(result.columns) == list(BaseAgent.prediction_columns)
+
+
+def test_graph_agent_handles_missing_account_columns() -> None:
+    """Agent should still return scores when no account columns are present."""
+    data = pd.DataFrame({
+        "transaction_id": ["G001", "G002"],
+        "amount_npr": [100_000.0, 200_000.0],
+        "is_fraud": [0, 1],
+    })
+    agent = GraphAgent()
+    agent.fit(data)
+    result = agent.predict(data)
+
+    assert len(result) == 2
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_graph_agent_does_not_mutate_input() -> None:
+    data = _graph_transactions()
+    original = data.copy(deep=True)
+    GraphAgent().fit(data).predict(data)
+    pd.testing.assert_frame_equal(data, original)
+
+
+def test_graph_agent_explain() -> None:
+    data = _graph_transactions()
+    agent = GraphAgent(config={"graph_alert_threshold": 0.3})
+    agent.fit(data)
+    agent.predict(data)
+
+    explanation = agent.explain("G000")
+    assert "G000" in explanation
+
+
+def test_graph_agent_gat_variant() -> None:
+    data = _graph_transactions()
+    agent = GraphAgent(config={"graph_model_type": "gat", "graph_alert_threshold": 0.3})
+    agent.fit(data)
+    result = agent.predict(data)
+
+    assert len(result) == len(data)
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_graph_agent_is_pickle_serializable() -> None:
+    import pickle
+    data = _graph_transactions()
+    agent = GraphAgent()
+    agent.fit(data)
+    restored = pickle.loads(pickle.dumps(agent))
+
+    assert isinstance(restored, GraphAgent)
+    assert restored.is_fitted
+
+
+# ---------------------------------------------------------------------------
+# Meta-Learner Agent tests
+# ---------------------------------------------------------------------------
+
+from src.agents.meta_learner import MetaLearnerAgent
+
+
+def _meta_wide_data() -> pd.DataFrame:
+    """Wide-format fixture: one row per transaction, one column per agent score."""
+    return pd.DataFrame({
+        "transaction_id": [f"M{i:03d}" for i in range(40)],
+        "velocity_score":   [float(i % 10) / 10.0 for i in range(40)],
+        "geo_risk_score":   [float((i + 2) % 10) / 10.0 for i in range(40)],
+        "behaviour_score":  [float((i + 4) % 10) / 10.0 for i in range(40)],
+        "kyc_aml_score":    [float((i + 6) % 10) / 10.0 for i in range(40)],
+        "graph_score":      [float((i + 8) % 10) / 10.0 for i in range(40)],
+        # Ground truth: fraud for the top-scoring rows
+        "is_fraud": [int(i >= 30) for i in range(40)],
+    })
+
+
+def _meta_long_data() -> pd.DataFrame:
+    """Long-format fixture (alert_scores table) joined with is_fraud."""
+    agents = ["velocity", "geo_risk", "behaviour", "kyc_aml", "graph"]
+    rows = []
+    n_txn = 20
+    for i in range(n_txn):
+        for j, agent in enumerate(agents):
+            rows.append({
+                "transaction_id": f"ML{i:03d}",
+                "agent_name": agent,
+                "risk_score": float((i + j) % 10) / 10.0,
+                "is_fraud": int(i >= 15),
+            })
+    return pd.DataFrame(rows)
+
+
+def test_meta_learner_agent_initializes_correctly() -> None:
+    agent = MetaLearnerAgent()
+
+    assert agent.agent_name == "meta_learner"
+    assert not agent.is_fitted
+    assert agent.model_type in ("random_forest", "xgboost")
+
+
+def test_meta_learner_agent_predict_wide_returns_correct_schema() -> None:
+    data = _meta_wide_data()
+    agent = MetaLearnerAgent(config={"meta_learner_n_estimators": 10, "meta_learner_calibration_cv": 2})
+    agent.fit(data)
+    result = agent.predict(data)
+
+    assert list(result.columns) == list(BaseAgent.prediction_columns)
+    assert len(result) == len(data)
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_meta_learner_agent_predict_long_format() -> None:
+    """Meta-learner must accept a long-format alert_scores table."""
+    long_data = _meta_long_data()
+    # Build a wide version for fit, then pass long to predict to test pivoting
+    agent = MetaLearnerAgent(config={"meta_learner_n_estimators": 10, "meta_learner_calibration_cv": 2})
+    wide = _meta_wide_data()
+    agent.fit(wide)
+    result = agent.predict(long_data)
+
+    # Long format has n_txn * n_agents rows; after pivot → n_txn rows
+    assert len(result) > 0
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_meta_learner_agent_handles_missing_transaction_id() -> None:
+    result = MetaLearnerAgent().predict(pd.DataFrame({"velocity_score": [0.8]}))
+
+    assert result.empty
+    assert list(result.columns) == list(BaseAgent.prediction_columns)
+
+
+def test_meta_learner_agent_fallback_without_fraud_labels() -> None:
+    """Without is_fraud the agent should use score-averaging and still return output."""
+    data = _meta_wide_data().drop(columns=["is_fraud"])
+    agent = MetaLearnerAgent()
+    agent.fit(data)
+    result = agent.predict(data)
+
+    assert len(result) == len(data)
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_meta_learner_agent_does_not_mutate_input() -> None:
+    data = _meta_wide_data()
+    original = data.copy(deep=True)
+    MetaLearnerAgent(
+        config={"meta_learner_n_estimators": 10, "meta_learner_calibration_cv": 2}
+    ).fit(data).predict(data)
+    pd.testing.assert_frame_equal(data, original)
+
+
+def test_meta_learner_agent_explain() -> None:
+    data = _meta_wide_data()
+    agent = MetaLearnerAgent(config={"meta_learner_n_estimators": 10, "meta_learner_calibration_cv": 2})
+    agent.fit(data)
+    agent.predict(data)
+
+    explanation = agent.explain("M000")
+    assert "M000" in explanation
+
+
+def test_meta_learner_agent_is_pickle_serializable() -> None:
+    import pickle
+    data = _meta_wide_data()
+    agent = MetaLearnerAgent(config={"meta_learner_n_estimators": 10, "meta_learner_calibration_cv": 2})
+    agent.fit(data)
+    restored = pickle.loads(pickle.dumps(agent))
+
+    assert isinstance(restored, MetaLearnerAgent)
+    assert restored.is_fitted
+
+
+def test_meta_learner_agent_missing_agent_columns_imputed() -> None:
+    """Scores from agents not present at predict time should be imputed to 0."""
+    train = _meta_wide_data()
+    agent = MetaLearnerAgent(config={"meta_learner_n_estimators": 10, "meta_learner_calibration_cv": 2})
+    agent.fit(train)
+
+    # Predict with only 2 of the 5 agent score columns
+    partial = pd.DataFrame({
+        "transaction_id": ["M000", "M001"],
+        "velocity_score": [0.8, 0.2],
+        "geo_risk_score": [0.6, 0.1],
+    })
+    result = agent.predict(partial)
+
+    assert len(result) == 2
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_meta_learner_feature_importances_populated_after_fit() -> None:
+    data = _meta_wide_data()
+    agent = MetaLearnerAgent(config={"meta_learner_n_estimators": 10, "meta_learner_calibration_cv": 2})
+    agent.fit(data)
+
+    importances = agent.feature_importances
+    # Should have one entry per feature column detected during fit
+    assert len(importances) > 0
+    assert all(isinstance(v, float) for v in importances.values())

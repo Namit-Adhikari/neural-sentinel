@@ -9,7 +9,7 @@ Usage::
 
     from src.utils.config import get_config
     cfg = get_config()
-    print(cfg.data_raw_dir)          # pathlib.Path
+    print(cfg.data_original_dir)     # pathlib.Path
     print(cfg.nrb_cash_reporting_threshold_npr)  # 1_000_000.0
 
 The ``get_config()`` function returns a cached singleton so repeated calls are
@@ -66,6 +66,11 @@ class Config(BaseModel):
         random_seed: Global random seed for reproducibility.
         target_ks_statistic: Maximum acceptable KS statistic for fidelity check.
         target_auc_roc_delta: Maximum acceptable AUC-ROC drop vs. real-trained model.
+        meta_learner_calibration_val_fraction: Fraction of training data held out for prefit calibration.
+        meta_learner_xgb_learning_rate: XGBoost learning rate (eta).
+        meta_learner_xgb_subsample: XGBoost row subsampling ratio.
+        meta_learner_xgb_colsample_bytree: XGBoost column subsampling ratio.
+        meta_learner_xgb_default_max_depth: XGBoost max_depth when meta_learner_max_depth is None.
         kaggle_mode: Set True when running inside a Kaggle notebook environment.
     """
 
@@ -117,6 +122,31 @@ class Config(BaseModel):
     weight_high_risk_grade: float = 0.3
     weight_structuring_pattern: float = 0.6
     weight_layering_pattern: float = 0.7
+
+    # ------------------------------------------------------------------
+    # Graph agent settings
+    # ------------------------------------------------------------------
+    graph_model_type: str = "graphsage"
+    graph_hidden_channels: int = 64
+    graph_gat_heads: int = 4
+    graph_dropout: float = 0.3
+    graph_epochs: int = 20
+    graph_lr: float = 1e-3
+
+    # ------------------------------------------------------------------
+    # Meta-learner settings
+    # ------------------------------------------------------------------
+    meta_learner_model_type: str = "random_forest"
+    meta_learner_n_estimators: int = 200
+    meta_learner_max_depth: int | None = None
+    meta_learner_calibration_method: str = "isotonic"
+    meta_learner_calibration_cv: int = 3
+    meta_learner_calibration_val_fraction: float = 0.2
+    meta_learner_xgb_use_gpu: bool = True
+    meta_learner_xgb_learning_rate: float = 0.05
+    meta_learner_xgb_subsample: float = 0.8
+    meta_learner_xgb_colsample_bytree: float = 0.8
+    meta_learner_xgb_default_max_depth: int = 6
 
     # ------------------------------------------------------------------
     # Generator settings
