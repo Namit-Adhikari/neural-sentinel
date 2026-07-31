@@ -129,3 +129,221 @@ def test_geo_risk_agent_handles_missing_features() -> None:
 
     assert len(result) == 1
     assert result.risk_score.iloc[0] == 0.0
+
+
+# ---------------------------------------------------------------------------
+# KYC/AML Agent tests
+# ---------------------------------------------------------------------------
+
+from src.agents.kyc_aml_agent import KYCAMLAgent
+
+
+def _kyc_transactions() -> pd.DataFrame:
+    return pd.DataFrame({
+        "transaction_id": ["T001", "T002", "T003", "T004", "T005", "T006"],
+        "sender_account_id": ["A1", "A2", "A3", "A4", "A5", "A6"],
+        "amount_npr": [
+            950_000.0,   # structuring (just below 1M threshold)
+            500.0,        # normal
+            999_000.0,   # structuring (just below 1M threshold)
+            50_000.0,     # normal — PEP account
+            200_000.0,   # normal — sanctioned account
+            1_500_000.0, # above threshold — no structuring flag
+        ],
+        "is_cross_border": [0, 0, 0, 0, 0, 0],
+        "remittance_corridor": [None, None, None, None, None, None],
+        "is_pep": [0, 0, 0, 1, 0, 0],
+        "is_sanctioned": [0, 0, 0, 0, 1, 0],
+        "kyc_verified": [1, 1, 1, 1, 1, 0],
+        "kyc_risk_grade": ["low", "low", "low", "high", "medium", "high"],
+        "account_age_days": [500, 365, 200, 50, 730, 10],
+    })
+
+
+def test_kyc_aml_agent_initializes_correctly() -> None:
+    agent = KYCAMLAgent()
+
+    assert agent.agent_name == "kyc_aml"
+    assert not agent.is_fitted
+    assert 0.0 < agent.alert_threshold <= 1.0
+
+
+def test_kyc_aml_agent_predict_returns_correct_schema() -> None:
+    data = _kyc_transactions()
+    agent = KYCAMLAgent()
+    agent.fit(data)
+    result = agent.predict(data)
+
+    assert list(result.columns) == list(BaseAgent.prediction_columns)
+    assert len(result) == len(data)
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_kyc_aml_agent_flags_sanctioned_accounts() -> None:
+    data = _kyc_transactions()
+    result = KYCAMLAgent().fit(data).predict(data)
+
+    # T005 is the sanctioned account
+    sanctioned_row = result.loc[result["transaction_id"] == "T005"]
+    assert "SANCTIONS" in sanctioned_row["reason_code"].values[0]
+    assert sanctioned_row["risk_score"].values[0] > 0.0
+
+
+def test_kyc_aml_agent_detects_structuring_pattern() -> None:
+    data = _kyc_transactions()
+    result = KYCAMLAgent().fit(data).predict(data)
+
+    # T001 and T003 are structuring transactions (900K–999K NPR)
+    for txn_id in ["T001", "T003"]:
+        row = result.loc[result["transaction_id"] == txn_id]
+        assert "STRUCTURING" in row["reason_code"].values[0], f"Expected STRUCTURING in {txn_id}"
+        assert row["risk_score"].values[0] > 0.0
+
+
+def test_kyc_aml_agent_handles_missing_account_features() -> None:
+    # Only transaction-level columns — no account features
+    data = pd.DataFrame({
+        "transaction_id": ["T001", "T002"],
+        "sender_account_id": ["A1", "A2"],
+        "amount_npr": [950_000.0, 100.0],
+    })
+    agent = KYCAMLAgent()
+    result = agent.predict(data)
+
+    assert len(result) == 2
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_kyc_aml_agent_does_not_mutate_input() -> None:
+    data = _kyc_transactions()
+    original = data.copy(deep=True)
+    KYCAMLAgent().fit(data).predict(data)
+    pd.testing.assert_frame_equal(data, original)
+
+
+def test_kyc_aml_agent_explain() -> None:
+    data = _kyc_transactions()
+    agent = KYCAMLAgent()
+    agent.fit(data)
+    agent.predict(data)
+
+    explanation = agent.explain("T001")
+    assert "T001" in explanation
+
+
+def test_kyc_aml_agent_normal_transaction_has_low_score() -> None:
+    data = pd.DataFrame({
+        "transaction_id": ["T_NORMAL"],
+        "sender_account_id": ["A_CLEAN"],
+        "amount_npr": [500.0],
+        "is_cross_border": [0],
+        "remittance_corridor": [None],
+        "is_pep": [0],
+        "is_sanctioned": [0],
+        "kyc_verified": [1],
+        "kyc_risk_grade": ["low"],
+        "account_age_days": [365],
+    })
+    result = KYCAMLAgent().predict(data)
+
+    # Normal transaction should have zero risk score
+    assert result["risk_score"].values[0] == 0.0
+    assert result["alert_flag"].values[0] == 0
+    assert result["reason_code"].values[0] == "NO_VIOLATIONS"
+
+
+# ---------------------------------------------------------------------------
+# Behaviour Agent tests
+# ---------------------------------------------------------------------------
+
+from src.agents.behaviour_agent import BehaviourAgent
+
+
+def _behaviour_transactions(n: int = 60) -> pd.DataFrame:
+    rng = pd.array([i for i in range(n)])
+    accounts = [f"ACC{(i % 5):02d}" for i in range(n)]
+    return pd.DataFrame({
+        "transaction_id": [f"BT{i:04d}" for i in range(n)],
+        "sender_account_id": accounts,
+        "amount_npr": [float(10_000 + (i * 1_000)) for i in range(n)],
+        "transaction_type": [
+            ["transfer", "payment", "deposit", "withdrawal"][i % 4] for i in range(n)
+        ],
+        "channel": [
+            ["mobile_banking", "atm", "branch"][i % 3] for i in range(n)
+        ],
+        "timestamp": pd.date_range("2022-01-01", periods=n, freq="2h"),
+        "is_fraud": [int(i % 10 == 0) for i in range(n)],  # 10% fraud
+    })
+
+
+def test_behaviour_agent_initializes_correctly() -> None:
+    agent = BehaviourAgent()
+
+    assert agent.agent_name == "behaviour"
+    assert not agent.is_fitted
+    assert agent.model_type in ("gru", "lstm")
+
+
+def test_behaviour_agent_predict_returns_correct_schema() -> None:
+    data = _behaviour_transactions()
+    agent = BehaviourAgent(config={"behaviour_epochs": 1, "behaviour_batch_size": 16})
+    agent.fit(data)
+    result = agent.predict(data)
+
+    assert list(result.columns) == list(BaseAgent.prediction_columns)
+    assert len(result) == len(data)
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_behaviour_agent_handles_missing_transaction_id() -> None:
+    data = pd.DataFrame({"amount_npr": [1000.0, 2000.0]})
+    result = BehaviourAgent().predict(data)
+
+    assert result.empty
+    assert list(result.columns) == list(BaseAgent.prediction_columns)
+
+
+def test_behaviour_agent_lstm_variant() -> None:
+    data = _behaviour_transactions()
+    agent = BehaviourAgent(
+        config={"behaviour_model_type": "lstm", "behaviour_epochs": 1, "behaviour_batch_size": 16}
+    )
+    agent.fit(data)
+    result = agent.predict(data)
+
+    assert len(result) == len(data)
+    assert result["risk_score"].between(0, 1).all()
+
+
+def test_behaviour_agent_does_not_mutate_input() -> None:
+    data = _behaviour_transactions()
+    original = data.copy(deep=True)
+    agent = BehaviourAgent(config={"behaviour_epochs": 1, "behaviour_batch_size": 16})
+    agent.fit(data)
+    agent.predict(data)
+    pd.testing.assert_frame_equal(data, original)
+
+
+def test_behaviour_agent_explain() -> None:
+    data = _behaviour_transactions()
+    agent = BehaviourAgent(config={"behaviour_epochs": 1, "behaviour_batch_size": 16})
+    agent.fit(data)
+    agent.predict(data)
+
+    explanation = agent.explain("BT0000")
+    assert "BT0000" in explanation
+
+
+def test_behaviour_agent_handles_missing_account_column() -> None:
+    # No sender_account_id at all — agent should raise ValueError internally
+    # and fall back gracefully (the catch in predict() handles it)
+    data = pd.DataFrame({
+        "transaction_id": ["T1", "T2"],
+        "amount_npr": [1000.0, 2000.0],
+    })
+    agent = BehaviourAgent(config={"behaviour_epochs": 1})
+    agent.fit(data)
+    # Without account col, _build_sequences raises; predict catches and falls back
+    result = agent.predict(data)
+    assert len(result) == 2
