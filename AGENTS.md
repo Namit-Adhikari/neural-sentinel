@@ -304,7 +304,9 @@ The two developers work on **separate directories and files** at all times. The 
 
 ### 7.3 Kaggle-Specific Constraints
 
-- Every notebook must be **self-contained and runnable on Kaggle** (free tier T4 GPU or CPU).
+- Every notebook must be **runnable on Kaggle from a clean kernel** (free-tier CPU/GPU fallback), but "self-contained" means it must contain its own minimal setup, inputs, and execution path—not a duplicate implementation of project code or tests.
+- Keep reusable production logic in `src/` and automated tests in `tests/`; notebooks may import and demonstrate that code. Do not copy substantial implementations or full test suites into notebooks merely to satisfy Kaggle portability.
+- Each notebook should have a clear flow: minimal setup, inputs/assumptions, focused implementation call, validation/results, and a short conclusion. Move lengthy explanations, reusable helpers, and exhaustive tests to `docs/`, `src/`, and `tests/` respectively.
 - Use `!pip install` only for packages not pre-installed on Kaggle. Prefer Kaggle's pre-installed environment.
 - Use Kaggle's `input/` directory for reading datasets (the user uploads data via Kaggle Dataset).
 - Save large outputs to Kaggle's `working/` directory; for persistence, use Kaggle Output.
@@ -538,11 +540,13 @@ conda activate neural-sentinel
 The `.python-version` file at the project root pins `3.12.13` and is picked up automatically by uv. Do not delete or modify it.
 
 ### 10.4 Kaggle-Specific Practices
-- At the top of every notebook, include a "Setup" cell that:
+- At the top of every notebook, include one minimal "Setup" cell that:
   - Detects and logs GPU/TPU availability
-  - Installs any missing packages via `!pip install -q`
+  - Installs only missing packages via `!pip install -q`
   - Sets random seeds for reproducibility (`numpy`, `torch`, `random`)
   - Configures logging
+- Make notebooks restart-and-run-all cleanly. Use a small local fallback/sample input when the Kaggle dataset is unavailable, while keeping the canonical data path explicit.
+- Keep setup and narrative proportional to the notebook's purpose. Phase 1 may include explanatory material and focused smoke tests; later execution phases should avoid duplicated documentation and test suites.
 - Use `tqdm` for progress bars on long operations
 - Profile memory usage before and after loading/generating large DataFrames
 - For GNN training, batch graph construction — do not load the entire 5M-row graph into memory at once; use `torch_geometric.loader.NeighborLoader` or similar
