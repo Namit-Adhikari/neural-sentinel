@@ -6,8 +6,11 @@ import logging
 import pickle
 
 import pandas as pd
+import pytest
 
 from src.agents import BaseAgent
+from src.agents.geo_risk_agent import GeoRiskAgent
+from src.agents.velocity_agent import VelocityAgent
 
 
 class StubAgent(BaseAgent):
@@ -65,3 +68,64 @@ def test_agent_is_pickle_serializable() -> None:
     assert isinstance(restored, StubAgent)
     assert restored.alert_threshold == 0.8
     assert restored.logger.name == "neural_sentinel.agents.velocity"
+
+
+def _transactions() -> pd.DataFrame:
+    return pd.DataFrame({
+        "transaction_id": ["txn-1", "txn-2", "txn-3", "txn-4"],
+        "timestamp": pd.to_datetime(
+            ["2025-01-01 00:00", "2025-01-01 00:10", "2025-01-01 04:00", "2025-01-02 00:00"],
+            utc=True,
+        ),
+        "sender_account_id": ["a", "a", "b", "c"],
+        "receiver_account_id": ["b", "c", "a", "a"],
+        "amount_npr": [100.0, 200.0, 500.0, 1_000_000.0],
+        "sender_country": ["Nepal", "Nepal", "Qatar", "Nepal"],
+        "receiver_country": ["Nepal", "Nepal", "Nepal", "Nepal"],
+        "is_cross_border": [0, 0, 1, 0],
+        "remittance_corridor": [None, None, "Qatar->Nepal", None],
+        "original_currency": ["NPR", "NPR", "QAR", "NPR"],
+        "ip_country": ["Nepal", "Nepal", "Qatar", "Nepal"],
+        "ip_is_vpn": [0, 0, 1, 0],
+        "is_fraud": [0, 0, 1, 0],
+    })
+
+
+def test_velocity_agent_returns_schema_and_does_not_mutate() -> None:
+    data = _transactions()
+    original = data.copy(deep=True)
+    result = VelocityAgent(config={"velocity_alert_threshold": 0.5}).fit(data).predict(data)
+
+    assert list(result.columns) == list(BaseAgent.prediction_columns)
+    assert len(result) == len(data)
+    assert result.risk_score.between(0, 1).all()
+    pd.testing.assert_frame_equal(data, original)
+
+
+def test_velocity_agent_handles_missing_features() -> None:
+    result = VelocityAgent().fit(pd.DataFrame({"transaction_id": ["txn-1"]})).predict(pd.DataFrame({"transaction_id": ["txn-1"]}))
+
+    assert len(result) == 1
+    assert result.risk_score.iloc[0] == 0.0
+
+
+def test_velocity_agent_raises_if_predict_called_before_fit() -> None:
+    data = _transactions()
+    with pytest.raises(RuntimeError, match="must be fitted"):
+        VelocityAgent().predict(data)
+
+
+def test_geo_risk_agent_detects_vpn_and_cross_border() -> None:
+    data = _transactions()
+    result = GeoRiskAgent().fit(data).predict(data)
+
+    assert list(result.columns) == list(BaseAgent.prediction_columns)
+    assert result.loc[result.transaction_id == "txn-3", "reason_code"].item() == "VPN_OR_PROXY"
+    assert result.risk_score.between(0, 1).all()
+
+
+def test_geo_risk_agent_handles_missing_features() -> None:
+    result = GeoRiskAgent().predict(pd.DataFrame({"transaction_id": ["txn-1"]}))
+
+    assert len(result) == 1
+    assert result.risk_score.iloc[0] == 0.0

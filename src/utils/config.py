@@ -94,6 +94,14 @@ class Config(BaseModel):
     # ------------------------------------------------------------------
     velocity_alert_threshold: float = 0.7
     geo_risk_alert_threshold: float = 0.65
+    velocity_windows_hours: tuple[int, ...] = (1, 6, 24, 168)
+    velocity_isolation_contamination: float = 0.05
+    velocity_isolation_estimators: int = 100
+    velocity_spike_min_transactions: int = 3
+    geo_risk_iterations: int = 300
+    geo_risk_learning_rate: float = 0.05
+    geo_risk_depth: int = 6
+    geo_risk_random_seed: int = 42
     kyc_aml_alert_threshold: float = 0.6
     behaviour_alert_threshold: float = 0.7
     graph_alert_threshold: float = 0.65
