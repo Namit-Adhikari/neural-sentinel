@@ -7,6 +7,7 @@ from src.agents.graph_agent import GraphAgent
 from src.agents.kyc_aml_agent import KYCAMLAgent
 from src.agents.meta_learner import MetaLearnerAgent
 from src.agents.velocity_agent import VelocityAgent
+from src.agents.explanation_agent import ExplanationAgent
 
 __all__ = [
     "BaseAgent",
@@ -16,4 +17,5 @@ __all__ = [
     "KYCAMLAgent",
     "GraphAgent",
     "MetaLearnerAgent",
+    "ExplanationAgent",
 ]
