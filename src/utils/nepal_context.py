@@ -34,6 +34,14 @@ REMITTANCE_CORRIDORS: dict[str, str] = {
     "Japan->Nepal":        "high",
 }
 
+# Numeric values used by model features.  Higher values indicate greater
+# geographic risk in the prototype; they are not regulatory classifications.
+CORRIDOR_RISK_SCORES: dict[str, float] = {
+    "low": 0.20,
+    "medium": 0.50,
+    "high": 0.85,
+}
+
 # ---------------------------------------------------------------------------
 # Banking channel probability weights  (AGENTS.md §12.2)
 # Weights sum to exactly 1.0 and reflect approximate Nepali banking channel mix.
@@ -60,6 +68,8 @@ EXCHANGE_RATE_RANGES: dict[str, tuple[float, float]] = {
     "SAR": (29.0,  36.0),
     "AED": (30.0,  37.0),
     "MYR": (24.0,  30.0),
+    "AUD": (75.0,  95.0),
+    "JPY": (0.75,  0.95),
 }
 
 # ---------------------------------------------------------------------------
