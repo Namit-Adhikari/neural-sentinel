@@ -260,8 +260,8 @@ neural-sentinel/
 │   └── detection/              # Detection & agent notebooks (Kaggle-ready)
 │       ├── phase1_agent_interfaces.ipynb
 │       ├── phase2_velocity_geo_agents.ipynb
-│       ├── phase3_behaviour_gnn_agents.ipynb
-│       ├── phase4_meta_learner.ipynb
+│       ├── phase3_behaviour_kyc_agents.ipynb
+│       ├── phase4_graph_metalearner.ipynb
 │       └── phase5_evaluation_explainability.ipynb
 │
 ├── tests/
