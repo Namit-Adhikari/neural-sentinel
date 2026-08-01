@@ -43,78 +43,11 @@ A research paper from a Nepali team (TechRxiv preprint, focused on Global IME Ba
 
 ---
 
-## 4. Source Data Analysis (Current State)
-
-### 4.1 Dataset Overview
-
-The uploaded dataset (`synthetic_financial_data.csv`, 1,048,575 rows) is an existing synthetic financial transaction dataset with the following characteristics discovered during analysis:
-
-| Attribute | Detail |
-|---|---|
-| **Row Count** | 1,048,575 |
-| **Format** | Single CSV file |
-| **Suspicious Transaction Rate** | To be determined — pending EDA on source data |
-
-### 4.2 Schema (Observed Columns)
-
-| Column | Type | Description | Notes |
-|---|---|---|---|
-| `transaction_id` | string (UUID) | Unique transaction identifier | Format: UUID v4 |
-| `sender_account` | string (16-digit) | Sender bank account number | Padded numeric string |
-| `receiver_account` | string (16-digit) | Receiver bank account number | Padded numeric string |
-| `transaction_type` | categorical | Type of transaction | Values: `transfer`, `payment`, `withdrawal`, `deposit`, `cash_out` |
-| `amount` | float | Transaction amount in NPR | Range: 0.01 to ~10M NPR; right-skewed |
-| `timestamp` | datetime (ISO 8601) | Transaction timestamp | Format: `YYYY-MM-DD HH:MM:SS`; single-day span |
-| `channel` | categorical | Banking channel used | Values: `mobile_banking`, `atm`, `branch`, `online_banking`, `pos` |
-| `currency` | string | Transaction currency | Values: `NPR`, `USD`, `EUR`, `INR`, `GBP`, `AUD`, `JPY`, `CNY`, `SGD` |
-| `country` | string | Country of transaction origin/destination | 10+ countries incl. Nepal, India, UAE, Qatar, Saudi Arabia, Malaysia, USA, UK, Australia, Japan, China, Singapore, South Korea, Thailand, Bahrain, Kuwait, Oman |
-| `merchant_category` | string | Merchant/business category | Values: `retail`, `grocery`, `restaurant`, `utility`, `travel`, `electronics`, `healthcare`, `education`, `entertainment`, `other` |
-| `device_type` | categorical | Device used for transaction | Values: `mobile`, `desktop`, `tablet`, `atm`, `pos_terminal` |
-| `ip_address` | string (IPv4) | Client IP address | Standard IPv4 format |
-| `is_fraud` | binary (int) | Target variable: 0 = not suspicious, 1 = suspicious | Treated as a **suspicious transaction flag** |
-
-### 4.3 Key Observations from EDA
-
-1. **Temporal limitation**: All transactions fall within a single 24-hour window. The generator must expand this to a realistic multi-month or multi-year temporal range to support temporal-feature engineering (rolling windows, velocity features, day-of-week patterns).
-
-2. **Amount distribution**: Right-skewed with a long tail. Fraud transactions tend to have higher mean amounts but significant overlap with legitimate transactions. The generator must preserve this distributional shape while extending the range realistically for a Nepali banking context (daily limits, NRB thresholds).
-
-3. **Currency diversity**: Multiple currencies present, indicating cross-border/remittance transactions. NPR is dominant. This is valuable for the Geo-risk agent. The generator must maintain realistic NPR-dominant ratios with corridor-specific currency patterns (e.g., INR for Indian corridor, USD/QAR/SAR for Gulf corridors).
-
-4. **Channel distribution**: `mobile_banking` is most frequent, reflecting Nepal's digital banking growth. `atm` and `branch` have lower counts. The generator should calibrate these proportions to approximate real Nepali banking channel mix.
-
-5. **Country distribution**: Nepal is dominant. India, UAE, Qatar, Saudi Arabia, Malaysia appear frequently — consistent with Nepali remittance corridors (Gulf countries + India + Malaysia). The generator must preserve and enhance these corridor patterns.
-
-6. **No account-level features**: The dataset lacks account-level metadata (account age, KYC status, risk grade, PEP flag, account balance, average monthly volume). These are critical for the KYC/AML rules agent and must be **synthetically derived** during generation by creating an auxiliary `accounts` table.
-
-7. **No sequential linking**: Transactions are independent rows. There is no explicit linking of transactions belonging to the same account over time. The generator must ensure that each account's transaction sequence is coherent (realistic inter-arrival times, consistent channel preferences, plausible balance evolution).
-
-8. **No AML-specific patterns**: The dataset does not contain explicit money-laundering typologies (structuring/smurfing below reporting thresholds, rapid fund movement through chains of mule accounts, round-tripping). These must be **injected** during generation to support the Graph/synthesis agent and AML rules agent.
-
-9. **No network/graph structure**: While sender/receiver account pairs exist, the dataset lacks multi-hop transaction chains, fan-in/fan-out patterns, and cyclical flows characteristic of mule-account networks. The generator must deliberately construct such subgraphs.
-
-10. **IP address as proxy**: IP addresses are present but not geolocated. For the Geo-risk agent, IP-to-geolocation mapping (country, city, ISP) should be derived or assigned consistently during generation.
-
-### 4.4 NRB (Nepal Rastra Bank) Regulatory Context
-
-The generator and all agents must be aware of these Nepal-specific regulatory thresholds (agents should reference these in rules and the generator should produce data that tests against them):
-
-| Regulation | Threshold | Relevance |
-|---|---|---|
-| Cash transaction reporting | Transactions >= NPR 1,000,000 (10 lakh) | Structuring detection |
-| International remittance reporting | All cross-border transfers | AML monitoring |
-| PEP (Politically Exposed Person) screening | All accounts | KYC/AML agent |
-| Sanctions screening | OFAC, UN, EU sanctions lists | KYC/AML agent |
-| Account opening KYC | Mandatory for all accounts | KYC/AML agent |
-| Suspicious Transaction Reporting (STR) | Any qualifying transaction | All agents contribute |
-
----
-
-## 5. Target Schema (Canonical Data Contract)
+## 4. Target Schema (Canonical Data Contract)
 
 The canonical schema is the **single source of truth** for all data flowing between agents. Every agent reads from this schema and writes scores/alerts back referencing transaction IDs from this schema.
 
-### 5.1 `transactions` Table (5M rows target)
+### 4.1 `transactions` Table (5M rows target)
 
 | Column | Type | Description | Source |
 |---|---|---|---|
@@ -141,7 +74,7 @@ The canonical schema is the **single source of truth** for all data flowing betw
 | `fraud_type` | categorical | fraud_type for fraud rows | Generated: "transaction_fraud" / "aml_structuring" / "aml_layering" / "aml_mule_network" / "identity_fraud" |
 | `aml_risk_indicator` | binary | 1 if transaction is part of AML pattern | Generated |
 
-### 5.2 `accounts` Table (Derived/Generated)
+### 4.2 `accounts` Table (Derived/Generated)
 
 | Column | Type | Description |
 |---|---|---|
@@ -159,7 +92,7 @@ The canonical schema is the **single source of truth** for all data flowing betw
 | `city` | string | Account holder's city (Nepal: major cities) |
 | `is_mule` | binary | Whether this is a generated mule account |
 
-### 5.3 `alert_scores` Table (Agent Output)
+### 4.3 `alert_scores` Table (Agent Output)
 
 | Column | Type | Description |
 |---|---|---|
@@ -173,7 +106,7 @@ The canonical schema is the **single source of truth** for all data flowing betw
 
 ---
 
-## 6. Repository Structure (Mandatory Layout)
+## 5. Repository Structure (Mandatory Layout)
 
 All code must follow this directory structure. Deviating from this structure without explicit approval from the team causes merge conflicts and breaks the build pipeline.
 
@@ -279,9 +212,9 @@ neural-sentinel/
 
 ---
 
-## 7. Development Pipeline & Ownership Split
+## 6. Development Pipeline & Ownership Split
 
-### 7.1 Parallel Workstreams (Merge-Conflict-Free)
+### 6.1 Parallel Workstreams (Merge-Conflict-Free)
 
 The two developers work on **separate directories and files** at all times. The only shared files are `src/data_contracts.py` (canonical schema), `src/utils/config.py`, and `src/utils/nepal_context.py` — these must be **finalized first** before parallel work begins.
 
@@ -294,7 +227,7 @@ The two developers work on **separate directories and files** at all times. The 
 | **Phase 4** | 5M row generation, AML pattern injection, validation | Graph agent (GraphSAGE/GAT), Meta-learner |
 | **Phase 5** | Data-quality agent, generation report | Explanation agent, system evaluation, research documentation |
 
-### 7.2 Branching Strategy
+### 6.2 Branching Strategy
 
 - `main` — stable, always runnable
 - `dev/data-pipeline` — Developer 1's branch
@@ -302,7 +235,7 @@ The two developers work on **separate directories and files** at all times. The 
 - Feature branches off respective dev branches: `feat/cta-benchmark`, `feat/velocity-agent`, etc.
 - Pull requests merge into `main` only after both developers review
 
-### 7.3 Kaggle-Specific Constraints
+### 6.3 Kaggle-Specific Constraints
 
 - Every notebook must be **runnable on Kaggle from a clean kernel** (free-tier CPU/GPU fallback), but "self-contained" means it must contain its own minimal setup, inputs, and execution path—not a duplicate implementation of project code or tests.
 - Keep reusable production logic in `src/` and automated tests in `tests/`; notebooks may import and demonstrate that code. Do not copy substantial implementations or full test suites into notebooks merely to satisfy Kaggle portability.
@@ -317,9 +250,9 @@ The two developers work on **separate directories and files** at all times. The 
 
 ---
 
-## 8. Agent Architecture & Design Principles
+## 7. Agent Architecture & Design Principles
 
-### 8.1 Agent Contract (All Agents Must Follow)
+### 7.1 Agent Contract (All Agents Must Follow)
 
 Every agent must:
 1. Inherit from `BaseAgent` (defined in `src/agents/base_agent.py`).
@@ -332,7 +265,7 @@ Every agent must:
 8. Never mutate input data — always return new DataFrames.
 9. Handle missing features gracefully (log a warning, impute or skip, never crash).
 
-### 8.2 Per-Agent Specifications
+### 7.2 Per-Agent Specifications
 
 #### Data-Quality Agent (Deterministic)
 - **Input**: Raw transaction rows
@@ -396,9 +329,9 @@ Every agent must:
 
 ---
 
-## 9. Data Generation Strategy
+## 8. Data Generation Strategy
 
-### 9.1 Generator Selection Process
+### 8.1 Generator Selection Process
 
 The generator must be selected through a **structured benchmark** (not intuition). The benchmark evaluates candidates on three axes:
 
@@ -416,7 +349,7 @@ The generator must be selected through a **structured benchmark** (not intuition
    - Distance to Closest Record (DCR): minimum distance between any synthetic row and its nearest real row
    - Target: DCR significantly above the 5th percentile of inter-real-record distances
 
-### 9.2 Candidate Generators
+### 8.2 Candidate Generators
 
 | Generator | Library | Strengths | Weaknesses |
 |---|---|---|---|
@@ -428,7 +361,7 @@ The generator must be selected through a **structured benchmark** (not intuition
 
 **Recommended starting point**: Benchmark CTGAN, TVAE, and Gaussian Copula first. Add CopulaGAN and WGAN-GP if needed. The paper's findings suggest CTGAN or TVAE as likely winners.
 
-### 9.3 Generation Pipeline (5M Rows)
+### 8.3 Generation Pipeline (5M Rows)
 
 The 5M row generation must follow this sequence:
 
@@ -445,7 +378,7 @@ The 5M row generation must follow this sequence:
 7. **Run quality metrics** (statistical fidelity, ML utility, privacy) on generated data.
 8. **Save as Parquet** in `data/generated/`.
 
-### 9.4 AML Pattern Injection Specifications
+### 8.4 AML Pattern Injection Specifications
 
 When injecting AML patterns, the generator must create the following realistic typologies:
 
@@ -472,9 +405,9 @@ When injecting AML patterns, the generator must create the following realistic t
 
 ---
 
-## 10. Coding Standards & Best Practices
+## 9. Coding Standards & Best Practices
 
-### 10.1 Python Conventions
+### 9.1 Python Conventions
 - Python 3.12.13 (pinned — local dev uses uv; Kaggle uses system Python 3.12)
 - Type hints on all function signatures
 - Docstrings on all public classes and functions (Google style)
@@ -483,7 +416,7 @@ When injecting AML patterns, the generator must create the following realistic t
 - Use `pathlib.Path` for all file paths, never raw strings
 - Use `logging` module (via `src/utils/logger.py`), never `print()` in library code
 
-### 10.2 Dependencies Management
+### 9.2 Dependencies Management
 - Pin all dependencies with exact versions in `requirements.txt`
 - Python version pinned to **3.12.13** via `.python-version` (uv) and `environment.yml` (conda)
 - Pinned versions (current):
@@ -510,7 +443,7 @@ When injecting AML patterns, the generator must create the following realistic t
 - Avoid heavyweight dependencies unless justified (e.g., no TensorFlow — use PyTorch only)
 - When adding a new dependency, update both `requirements.txt` and `environment.yml`
 
-### 10.3 Environment Setup
+### 9.3 Environment Setup
 
 **uv is the primary package manager for local development.** pip and conda are supported as secondary options. Kaggle manages its own environment independently.
 
@@ -539,7 +472,7 @@ conda activate neural-sentinel
 
 The `.python-version` file at the project root pins `3.12.13` and is picked up automatically by uv. Do not delete or modify it.
 
-### 10.4 Kaggle-Specific Practices
+### 9.4 Kaggle-Specific Practices
 - At the top of every notebook, include one minimal "Setup" cell that:
   - Detects and logs GPU/TPU availability
   - Installs only missing packages via `!pip install -q`
@@ -551,64 +484,64 @@ The `.python-version` file at the project root pins `3.12.13` and is picked up a
 - Profile memory usage before and after loading/generating large DataFrames
 - For GNN training, batch graph construction — do not load the entire 5M-row graph into memory at once; use `torch_geometric.loader.NeighborLoader` or similar
 
-### 10.5 Git Hygiene
+### 9.5 Git Hygiene
 - `.gitignore` must exclude: `data/original/`, `data/interim/`, `data/generated/`, `.ipynb_checkpoints/`, `__pycache__/`, `.env`, `*.pyc`, `models/` (saved model files)
 - Commit messages: conventional commits format (`feat:`, `fix:`, `docs:`, `refactor:`, `chore:`); must be brief, precise, and one line (e.g. `feat: add velocity agent rolling window features`)
 - Never commit large files (> 5MB) — use Git LFS or store externally
 - Never commit API keys, credentials, or personal data
 
-### 10.6 Testing
+### 9.6 Testing
 - Use `pytest` for all `src/` module tests
 - Tests must be runnable on CPU without GPU
 - Each agent must have at least: (1) a test that it initializes correctly, (2) a test that `predict()` returns correctly shaped output, (3) a test that it handles missing data gracefully
 - Data contract tests must validate schema compliance (correct types, allowed values, no nulls in required fields)
 
-### 10.7 Configuration Management
+### 9.7 Configuration Management
 - All magic numbers, thresholds, file paths, and hyperparameters live in `src/utils/config.py`
 - Use a dataclass or Pydantic `BaseModel` for typed configuration
 - No hardcoded values in agent or generator code — always reference `config`
 
 ---
 
-## 11. Evaluation Framework
+## 10. Evaluation Framework
 
-### 11.1 Generator Evaluation
+### 10.1 Generator Evaluation
 - **Statistical metrics**: KS test, Wasserstein distance, correlation matrix distance, categorical TV distance
 - **ML utility**: Downstream classifier AUC-ROC (synthetic train → real test vs. real train → real test)
 - **Privacy**: DCR (Distance to Closest Record)
 - **Report**: Comparative table of all generators across all metrics; recommendation with justification
 
-### 11.2 Agent Evaluation
+### 10.2 Agent Evaluation
 - **Per-agent metrics**: AUC-ROC, AUC-PR, F1-score (at optimal threshold), Precision@k (top-k alerts), confusion matrix
 - **Calibration**: Brier score, reliability diagram — risk scores must be well-calibrated probabilities
 - **System-level metrics**: Meta-learner AUC-ROC vs. best individual agent AUC-ROC; improvement delta
 - **Explainability quality**: Sample explanations reviewed for coherence, specificity, and actionability
 
-### 11.3 AML-Specific Evaluation
+### 10.3 AML-Specific Evaluation
 - **Structuring detection rate**: What fraction of injected structuring patterns are flagged by the KYC/AML agent and the meta-learner?
 - **Network detection rate**: What fraction of injected mule networks are identified by the Graph agent?
 - **False positive rate**: How many legitimate transactions are incorrectly flagged? (Target: < 5% FPR at operational threshold)
 
 ---
 
-## 12. Nepal-Specific Context (`src/utils/nepal_context.py`)
+## 11. Nepal-Specific Context (`src/utils/nepal_context.py`)
 
 This module must contain all Nepal-specific reference data and constants. AI agents writing code should import from this module rather than hardcoding.
 
-### 12.1 Remittance Corridors (by volume, approximate)
+### 11.1 Remittance Corridors (by volume, approximate)
 - **Gulf countries**: Qatar, UAE, Saudi Arabia, Bahrain, Kuwait, Oman — largest remittance sources
 - **South/Southeast Asia**: India, Malaysia, South Korea, Thailand
 - **Developed markets**: USA, UK, Australia, Japan — smaller volume but higher per-transaction value
 - **Corridor risk tiers**: Gulf corridors = high volume / medium risk; India = high volume / low risk; Western corridors = low volume / high risk
 
-### 12.2 Nepali Banking Channel Mix (approximate)
+### 11.2 Nepali Banking Channel Mix (approximate)
 - Mobile banking: ~40-50% (growing rapidly)
 - Branch/counter: ~20-25%
 - ATM: ~10-15%
 - Online banking: ~10-15%
 - POS: ~5-10%
 
-### 12.3 NPR Exchange Rate Ranges (reference for generator)
+### 11.3 NPR Exchange Rate Ranges (reference for generator)
 - USD/NPR: 110–135
 - EUR/NPR: 120–150
 - GBP/NPR: 140–170
@@ -618,12 +551,42 @@ This module must contain all Nepal-specific reference data and constants. AI age
 - AED/NPR: 30–37
 - MYR/NPR: 24–30
 
-### 12.4 Major Nepali Cities (for account holder location)
+### 11.4 Major Nepali Cities (for account holder location)
 Kathmandu, Lalitpur, Bhaktapur, Pokhara, Biratnagar, Bharatpur, Birganj, Dharan, Butwal, Hetauda, Nepalgunj, Bhadrapur, Itahari, Dhangadhi, Mahendranagar
+
+### 11.5 NRB (Nepal Rastra Bank) Regulatory Context
+
+The generator and all agents must be aware of these Nepal-specific regulatory thresholds (agents should reference these in rules and the generator should produce data that tests against them):
+
+| Regulation | Threshold | Relevance |
+|---|---|---|
+| Cash transaction reporting | Transactions >= NPR 1,000,000 (10 lakh) | Structuring detection |
+| International remittance reporting | All cross-border transfers | AML monitoring |
+| PEP (Politically Exposed Person) screening | All accounts | KYC/AML agent |
+| Sanctions screening | OFAC, UN, EU sanctions lists | KYC/AML agent |
+| Account opening KYC | Mandatory for all accounts | KYC/AML agent |
+| Suspicious Transaction Reporting (STR) | Any qualifying transaction | All agents contribute |
 
 ---
 
-## 13. Open Questions & Clarifications Needed
+## 12. Open Questions & Clarifications Needed
+
+### 12.1 Pre-EDA Working Assumptions (to be validated/replaced after EDA)
+
+The items below are **unverified working assumptions only** — none have been confirmed against the actual source CSV. They bootstrap Phase 1 planning but carry zero authority. Every item MUST be validated, corrected, or discarded once EDA is complete on the file in `data/original/`. Post-EDA findings belong in `docs/eda/summary.md` (referenced by §14 #1), never inline in this document as facts.
+
+| # | Assumption | Validation Step |
+|---|---|---|
+| A1 | Source file is `synthetic_financial_data.csv` | Confirm path existence in `data/original/` |
+| A2 | Row count is TBD (~100K claimed; the prior §4.1 value of 1,048,575 was an unverified guess) | `len(df)` on actual CSV |
+| A3 | Suspicious (`is_fraud`) rate is TBD | `df['is_fraud'].mean()` |
+| A4 | Expected column candidates: `transaction_id`, `sender_account`, `receiver_account`, `transaction_type`, `amount`, `timestamp`, `channel`, `currency`, `country`, `merchant_category`, `device_type`, `ip_address`, `is_fraud` | `df.columns.tolist()` + `df.dtypes` |
+| A5 | Temporal span of `timestamp` is TBD (prior claim of "single 24-hour window" was unverified) | `df['timestamp'].min()` / `.max()` |
+| A6 | Amount range, skew, and fraud-vs-legit amount separation are TBD (prior claims of "right-skewed to ~10M NPR" and "fraud has higher mean" were unverified) | `df['amount'].describe()` + groupby stats |
+| A7 | Currency, channel, and country distributions are TBD (prior claims of "NPR dominant", "mobile_banking most frequent" were unverified) | `.value_counts()` per column |
+| A8 | Account-level features (KYC, PEP, age, balance) likely absent — will need synthetic `accounts` table (see §4.2) | Schema inspection + `df.columns` |
+| A9 | No native AML typologies (structuring, layering, mule networks, round-tripping) — injection required during generation (see §8.4) | Pattern mining: amount-threshold proximity, timestamp bursts, graph connectivity on sender/receiver pairs |
+| A10 | No geolocated IP info — post-generation derivation acceptable per §12 #3 | IP format inspection |
 
 Before proceeding to code generation, the following questions should be confirmed with the team:
 
@@ -636,13 +599,13 @@ Before proceeding to code generation, the following questions should be confirme
    - `ip_is_vpn`: synthetic binary flag with a higher probability assigned to fraud rows and a low baseline probability for legitimate rows.
    Real GeoIP enrichment is a production concern and out of scope for this prototype.
 
-4. **Number of mule networks**: Deferred — to be decided after EDA and testing. The minimum counts specified in Section 9.4 are provisional. Final numbers will be calibrated based on EDA findings and GNN training requirements.
+4. **Number of mule networks**: Deferred — to be decided after EDA and testing. The minimum counts specified in Section 8.4 are provisional. Final numbers will be calibrated based on EDA findings and GNN training requirements.
 
 5. **Graph construction**: Resolved — nodes are accounts and directed edges are transactions (sender account → receiver account). All further graph construction decisions (sampling strategy, time windowing, edge weighting, etc.) will be determined after EDA on the generated data.
 
 ---
 
-## 14. Prohibited Actions
+## 13. Prohibited Actions
 
 AI agents contributing to this repository must **NOT**:
 
@@ -661,7 +624,7 @@ AI agents contributing to this repository must **NOT**:
 
 ---
 
-## 15. Success Criteria
+## 14. Success Criteria
 
 The project is considered successful if:
 
