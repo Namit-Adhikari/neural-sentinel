@@ -168,8 +168,8 @@ def test_channel_mix_keys_match_channels() -> None:
 
 
 def test_exchange_rate_ranges_count() -> None:
-    """EXCHANGE_RATE_RANGES has exactly 8 currency entries."""
-    assert len(EXCHANGE_RATE_RANGES) == 8
+    """EXCHANGE_RATE_RANGES has exactly 10 currency entries."""
+    assert len(EXCHANGE_RATE_RANGES) == 10
 
 
 def test_corridor_currencies_count() -> None:
