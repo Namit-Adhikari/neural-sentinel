@@ -2,7 +2,7 @@
 
 Three models are defined here — :class:`Transaction`, :class:`Account`, and
 :class:`AlertScore` — corresponding to the three tables described in
-AGENTS.md Sections 5.1–5.3.  These models are the single source of truth for
+AGENTS.md Sections 4.1–4.3.  These models are the single source of truth for
 all data flowing between agents, generators, and notebooks.
 
 Usage::
@@ -28,7 +28,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 class Transaction(BaseModel):
     """Canonical representation of a single financial transaction row.
 
-    Corresponds to the ``transactions`` table defined in AGENTS.md §5.1.
+    Corresponds to the ``transactions`` table defined in AGENTS.md §4.1.
 
     Attributes:
         transaction_id: Unique identifier (UUID format, not validated for performance).
@@ -162,7 +162,7 @@ class Transaction(BaseModel):
 class Account(BaseModel):
     """Canonical representation of a bank account record.
 
-    Corresponds to the ``accounts`` table defined in AGENTS.md §5.2.
+    Corresponds to the ``accounts`` table defined in AGENTS.md §4.2.
 
     Attributes:
         account_id: Primary key for the account.
@@ -204,7 +204,7 @@ class Account(BaseModel):
 class AlertScore(BaseModel):
     """Risk-score output produced by a single agent for a single transaction.
 
-    Corresponds to the ``alert_scores`` table defined in AGENTS.md §5.3.
+    Corresponds to the ``alert_scores`` table defined in AGENTS.md §4.3.
 
     Attributes:
         transaction_id: FK to the ``transactions`` table.
