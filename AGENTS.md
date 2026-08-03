@@ -571,28 +571,28 @@ The generator and all agents must be aware of these Nepal-specific regulatory th
 
 ## 12. Open Questions & Clarifications Needed
 
-### 12.1 Pre-EDA Working Assumptions (to be validated/replaced after EDA)
+### 12.1 EDA-Validated Findings (Formerly Pre-EDA Working Assumptions)
 
-The items below are **unverified working assumptions only** — none have been confirmed against the actual source CSV. They bootstrap Phase 1 planning but carry zero authority. Every item MUST be validated, corrected, or discarded once EDA is complete on the file in `data/original/`. Post-EDA findings belong in `docs/eda/summary.md` (referenced by §14 #1), never inline in this document as facts.
+> **Dev 1 Phase 1 EDA sign-off:** Complete. Executed on Kaggle CPU (source bundle at `/kaggle/input/datasets/namitadhikari/kaggle-input`). Source is a **multi-file synthetic bundle** (not a single CSV): `transactions.csv` (100,222 × 55), `accounts.csv` (65,339 × 13), `ml_features.csv` (100,222 × 35), `graph_edges.csv`, and `reports/*.xml`. Canonical findings with numeric evidence live in `docs/eda/summary.md`; only the disposition of each prior assumption is recorded here.
 
-| # | Assumption | Validation Step |
+| # | Assumption | Disposition (evidence in `docs/eda/summary.md`) |
 |---|---|---|
-| A1 | Source file is `synthetic_financial_data.csv` | Confirm path existence in `data/original/` |
-| A2 | Row count is TBD (~100K claimed; the prior §4.1 value of 1,048,575 was an unverified guess) | `len(df)` on actual CSV |
-| A3 | Suspicious (`is_fraud`) rate is TBD | `df['is_fraud'].mean()` |
-| A4 | Expected column candidates: `transaction_id`, `sender_account`, `receiver_account`, `transaction_type`, `amount`, `timestamp`, `channel`, `currency`, `country`, `merchant_category`, `device_type`, `ip_address`, `is_fraud` | `df.columns.tolist()` + `df.dtypes` |
-| A5 | Temporal span of `timestamp` is TBD (prior claim of "single 24-hour window" was unverified) | `df['timestamp'].min()` / `.max()` |
-| A6 | Amount range, skew, and fraud-vs-legit amount separation are TBD (prior claims of "right-skewed to ~10M NPR" and "fraud has higher mean" were unverified) | `df['amount'].describe()` + groupby stats |
-| A7 | Currency, channel, and country distributions are TBD (prior claims of "NPR dominant", "mobile_banking most frequent" were unverified) | `.value_counts()` per column |
-| A8 | Account-level features (KYC, PEP, age, balance) likely absent — will need synthetic `accounts` table (see §4.2) | Schema inspection + `df.columns` |
-| A9 | No native AML typologies (structuring, layering, mule networks, round-tripping) — injection required during generation (see §8.4) | Pattern mining: amount-threshold proximity, timestamp bursts, graph connectivity on sender/receiver pairs |
-| A10 | No geolocated IP info — post-generation derivation acceptable per §12 #3 | IP format inspection |
+| A1 | Source file is `synthetic_financial_data.csv` | **Superseded** — actual source is a multi-file bundle; `transactions.csv` is the primary operational table. |
+| A2 | Row count TBD (~100K; prior 1,048,575 was unverified) | **Resolved** — transactions: 100,222 rows × 55 cols; accounts: 65,339 × 13; ml_features: 100,222 × 35. 1M-row claim rejected. |
+| A3 | Suspicious rate TBD | **Resolved** — label is `is_suspicious_tx` in `ml_features.csv`: 336 / 100,222 = **0.3353%**. Field is `is_suspicious_tx`, not `is_fraud`. |
+| A4 | Column candidates TBD | **Resolved** — source schema does **not** match canonical contract (uses `Sender_account`, `Receiver_account`, `Date`, `Time`, `Payment_type`, `amount_local_npr`, etc.). 55 cols confirmed for transactions. |
+| A5 | Temporal span TBD ("single 24h window" unverified) | **Resolved** — span is ~30 days but only **10 distinct calendar dates** (inconsistent coverage; one-year expansion requires synthetic timeline generation in Phase 2/4). |
+| A6 | Amount distribution TBD | **Resolved** — strongly right-skewed in NPR; confirmed: median ≈ 1.24M, mean ≈ 1.77M, 99p ≈ 9.22M, max ≈ 552.8M. Suspicious rows have 3.1× higher mean amount than non-suspicious (5.49M vs 1.76M NPR). |
+| A7 | Currency/channel/country TBD | **Resolved** — geography is **UK-heavy source fields** (not Nepal-representative); corridor and Nepal-context fields must be derived in canonical transformation. |
+| A8 | Account-level KYC features likely absent | **Confirmed** — source `accounts.csv` exists (65,339 rows) but is a structural seed only; KYC risk grades, PEP, sanctions, and mule flags require synthetic generation per §4.2. |
+| A9 | No native AML typologies | **Confirmed** — label is a generic suspicious-activity flag only. No structuring/layering/mule patterns natively present. Injection during Phase 4 generation is mandatory per §8.4. |
+| A10 | No geolocated IP info | **Confirmed** — no native GeoIP. Synthetic derivation per §12 Q3 (copy `ip_country` from sender/account country, flag `ip_is_vpn` probabilistically) is acceptable. |
 
 Before proceeding to code generation, the following questions should be confirmed with the team:
 
 1. **Time range for generated data**: Resolved — 1 year. The 5M rows will span 1 year of transaction history. This supports velocity feature windows (1h, 6h, 24h, 7d), seasonal patterns (monthly, quarterly), and day-of-week behavioral patterns.
 
-2. **Suspicious transaction rate in 5M dataset**: Deferred — to be decided after EDA. The target rate will be determined after EDA reveals the true distribution of the source data and after evaluating the impact on downstream model training.
+2. **Suspicious transaction rate in 5M dataset**: **Partially resolved — target ratio deferred**. EDA confirms the source baseline is 0.3353% (336 / 100,222). Whether the 5M expanded dataset (a) preserves this 0.3353% rate exactly, (b) scales to a higher nominal rate (~1%) to improve downstream classifier signal, or (c) weights per fraud-type per §8.4, remains a team decision before Phase 4 generation. The label field name in downstream canonical data should be `is_fraud` (not `is_suspicious_tx`) per §4.1 even though semantics remain "suspicious flag, not confirmed fraud."
 
 3. **IP geolocation**: Resolved — no real GeoIP dependency (e.g., MaxMind) will be used in this prototype. Both fields are handled as deterministic post-processing steps after generation:
    - `ip_country`: for domestic transactions, copy directly from the `country` column; for cross-border transactions, assign consistent with the sender's country.
