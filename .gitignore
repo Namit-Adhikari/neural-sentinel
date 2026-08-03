@@ -4,7 +4,7 @@ venv
 *.zip
 *.pdf
 .kiro
-
+.obsidian
 # Data directories (git-ignored per AGENTS.md §10.5)
 data/original/*
 !data/original/.gitkeep

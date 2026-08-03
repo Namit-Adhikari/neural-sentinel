@@ -225,3 +225,35 @@ class AlertScore(BaseModel):
     reason_code: str
     explanation: str
     timestamp: datetime.datetime
+
+
+# ---------------------------------------------------------------------------
+# Generator Input Schema
+# ---------------------------------------------------------------------------
+
+# The exact subset of columns from the canonical schema that should be fed
+# into synthetic data generators. Deterministically derived columns (e.g., 
+# is_cross_border, remittance_corridor) are EXCLUDED here. They should be 
+# re-derived in a post-processing step to maintain strict logical consistency.
+GENERATOR_BASE_COLUMNS = [
+    "transaction_id",
+    "transaction_date",
+    "transaction_time",
+    "sender_account_id",
+    "receiver_account_id",
+    "transaction_type",
+    "amount_npr",
+    "original_currency",
+    "exchange_rate",
+    "channel",
+    "sender_country",
+    "receiver_country",
+    "merchant_category",
+    "device_type",
+    "ip_address",
+    "ip_country",
+    "ip_is_vpn",
+    "is_fraud",
+    "fraud_type",
+    "aml_risk_indicator"
+]

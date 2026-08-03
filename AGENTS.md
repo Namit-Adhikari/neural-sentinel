@@ -218,14 +218,14 @@ neural-sentinel/
 
 The two developers work on **separate directories and files** at all times. The only shared files are `src/data_contracts.py` (canonical schema), `src/utils/config.py`, and `src/utils/nepal_context.py` — these must be **finalized first** before parallel work begins.
 
-| Phase | Developer 1 (Data/Generation) | Developer 2 (Detection/Research) |
-|---|---|---|
-| **Phase 0** | Joint: Finalize `data_contracts.py`, `config.py`, `nepal_context.py` | Joint: Finalize `data_contracts.py`, `config.py`, `nepal_context.py` |
-| **Phase 1** | EDA notebooks (`docs/eda/`), data profiling | Agent base class (`src/agents/base_agent.py`), agent interface design |
-| **Phase 2** | Data cleaning (`src/cleaning.py`), canonical schema transformation | Velocity agent, Geo-risk agent (`src/agents/velocity_agent.py`, `geo_risk_agent.py`) |
-| **Phase 3** | Generator benchmarking (`docs/generator_benchmark/`, `src/generation/`) | Behaviour agent (GRU/LSTM), KYC/AML rules agent |
-| **Phase 4** | 5M row generation, AML pattern injection, validation | Graph agent (GraphSAGE/GAT), Meta-learner |
-| **Phase 5** | Data-quality agent, generation report | Explanation agent, system evaluation, research documentation |
+| Phase       | Developer 1 (Data/Generation)                                           | Developer 2 (Detection/Research)                                                     |
+| ----------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| **Phase 0** | Joint: Finalize `data_contracts.py`, `config.py`, `nepal_context.py`    | Joint: Finalize `data_contracts.py`, `config.py`, `nepal_context.py`                 |
+| **Phase 1** | EDA notebooks (`docs/eda/`), data profiling                             | Agent base class (`src/agents/base_agent.py`), agent interface design                |
+| **Phase 2** | Data cleaning (`src/cleaning.py`), canonical schema transformation      | Velocity agent, Geo-risk agent (`src/agents/velocity_agent.py`, `geo_risk_agent.py`) |
+| **Phase 3** | Generator benchmarking (`docs/generator_benchmark/`, `src/generation/`) | Behaviour agent (GRU/LSTM), KYC/AML rules agent                                      |
+| **Phase 4** | 5M row generation, AML pattern injection, validation                    | Graph agent (GraphSAGE/GAT), Meta-learner                                            |
+| **Phase 5** | Data-quality agent, generation report                                   | Explanation agent, system evaluation, research documentation                         |
 
 ### 6.2 Branching Strategy
 
@@ -351,13 +351,13 @@ The generator must be selected through a **structured benchmark** (not intuition
 
 ### 8.2 Candidate Generators
 
-| Generator | Library | Strengths | Weaknesses |
-|---|---|---|---|
-| CTGAN | SDV | Handles mixed data types well; proven on tabular | Slow training on large data; memory-intensive |
-| TVAE | SDV | Fast training; good for high-dimensional data | May oversmooth rare categories |
-| CopulaGAN | SDV | Captures correlations via copulas + GAN | Complex; may not scale to 5M |
-| Gaussian Copula | SDV | Very fast; lightweight | Limited capacity for complex joint distributions |
-| WGAN-GP | Custom (PyTorch) | Stable GAN training; gradient penalty | Requires careful tuning |
+| Generator       | Library          | Strengths                                        | Weaknesses                                       |
+| --------------- | ---------------- | ------------------------------------------------ | ------------------------------------------------ |
+| CTGAN           | SDV              | Handles mixed data types well; proven on tabular | Slow training on large data; memory-intensive    |
+| TVAE            | SDV              | Fast training; good for high-dimensional data    | May oversmooth rare categories                   |
+| CopulaGAN       | SDV              | Captures correlations via copulas + GAN          | Complex; may not scale to 5M                     |
+| Gaussian Copula | SDV              | Very fast; lightweight                           | Limited capacity for complex joint distributions |
+| WGAN-GP         | Custom (PyTorch) | Stable GAN training; gradient penalty            | Requires careful tuning                          |
 
 **Recommended starting point**: Benchmark CTGAN, TVAE, and Gaussian Copula first. Add CopulaGAN and WGAN-GP if needed. The paper's findings suggest CTGAN or TVAE as likely winners.
 
