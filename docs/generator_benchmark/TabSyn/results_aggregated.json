@@ -1,0 +1,15 @@
+{
+  "synthesizer": "TabSyn",
+  "aggregated": {
+    "avg_accuracy_diff": "0.0000 \u00b1 0.0000",
+    "avg_auc_diff": "0.0165 \u00b1 0.0000",
+    "avg_f1_diff": "0.0000 \u00b1 0.0000",
+    "avg_jsd": "0.0177 \u00b1 0.0000",
+    "avg_wd": "0.0192 \u00b1 0.0000",
+    "diff_corr": "54535826.0341 \u00b1 0.0000",
+    "elapsed_s": "163.8000 \u00b1 0.0000",
+    "real_auc": "0.4992 \u00b1 0.0000",
+    "seed": "42.0000 \u00b1 0.0000",
+    "synthetic_auc": "0.5157 \u00b1 0.0000"
+  }
+}

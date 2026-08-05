@@ -1,0 +1,15 @@
+{
+  "synthesizer": "TVAE",
+  "aggregated": {
+    "avg_accuracy_diff": "0.0000 \u00b1 0.0000",
+    "avg_auc_diff": "0.0877 \u00b1 0.0889",
+    "avg_f1_diff": "0.0000 \u00b1 0.0000",
+    "avg_jsd": "0.1392 \u00b1 0.0004",
+    "avg_wd": "0.0797 \u00b1 0.0151",
+    "diff_corr": "9.4143 \u00b1 0.0410",
+    "elapsed_s": "156.6000 \u00b1 7.0147",
+    "real_auc": "0.4996 \u00b1 0.0003",
+    "seed": "17.3333 \u00b1 17.4611",
+    "synthetic_auc": "0.4473 \u00b1 0.1135"
+  }
+}

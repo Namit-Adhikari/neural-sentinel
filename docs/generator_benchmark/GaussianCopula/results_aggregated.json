@@ -1,0 +1,15 @@
+{
+  "synthesizer": "GaussianCopula",
+  "aggregated": {
+    "avg_accuracy_diff": "0.4125 \u00b1 0.2034",
+    "avg_auc_diff": "0.2738 \u00b1 0.0093",
+    "avg_f1_diff": "0.0041 \u00b1 0.0011",
+    "avg_jsd": "0.1087 \u00b1 0.0043",
+    "avg_wd": "0.0206 \u00b1 0.0044",
+    "diff_corr": "11.3812 \u00b1 0.3552",
+    "elapsed_s": "180.9667 \u00b1 7.2867",
+    "real_auc": "0.8693 \u00b1 0.0020",
+    "seed": "17.3333 \u00b1 17.4611",
+    "synthetic_auc": "0.6124 \u00b1 0.0220"
+  }
+}

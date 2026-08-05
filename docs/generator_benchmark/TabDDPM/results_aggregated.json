@@ -1,0 +1,15 @@
+{
+  "synthesizer": "TabDDPM",
+  "aggregated": {
+    "avg_accuracy_diff": "0.4542 \u00b1 0.2974",
+    "avg_auc_diff": "0.2210 \u00b1 0.0740",
+    "avg_f1_diff": "0.0041 \u00b1 0.0017",
+    "avg_jsd": "0.0847 \u00b1 0.0085",
+    "avg_wd": "0.4026 \u00b1 0.0006",
+    "diff_corr": "63713402.8137 \u00b1 90104341.2039",
+    "elapsed_s": "282.8000 \u00b1 0.4320",
+    "real_auc": "0.8693 \u00b1 0.0020",
+    "seed": "17.3333 \u00b1 17.4611",
+    "synthetic_auc": "0.6483 \u00b1 0.0722"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "synthesizer": "CopulaGAN",
+  "aggregated": {
+    "avg_accuracy_diff": "1.3083 \u00b1 0.5613",
+    "avg_auc_diff": "0.1710 \u00b1 0.0274",
+    "avg_f1_diff": "0.0086 \u00b1 0.0029",
+    "avg_jsd": "0.1135 \u00b1 0.0029",
+    "avg_wd": "0.0520 \u00b1 0.0128",
+    "diff_corr": "12.4670 \u00b1 0.0426",
+    "elapsed_s": "345.3000 \u00b1 4.9315",
+    "real_auc": "0.8693 \u00b1 0.0020",
+    "seed": "17.3333 \u00b1 17.4611",
+    "synthetic_auc": "0.7133 \u00b1 0.0410"
+  }
+}

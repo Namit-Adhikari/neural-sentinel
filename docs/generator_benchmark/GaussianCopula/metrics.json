@@ -1,0 +1,41 @@
+{
+  "synthesizer": "GaussianCopula",
+  "seeds": [
+    {
+      "seed": 42,
+      "elapsed_s": 176.9,
+      "avg_accuracy_diff": 0.7,
+      "avg_f1_diff": 0.0056,
+      "avg_auc_diff": 0.2796,
+      "real_auc": 0.8707,
+      "synthetic_auc": 0.6123,
+      "avg_jsd": 0.11442796516935039,
+      "avg_wd": 0.026720545256599157,
+      "diff_corr": 11.167585063433586
+    },
+    {
+      "seed": 4,
+      "elapsed_s": 191.2,
+      "avg_accuracy_diff": 0.275,
+      "avg_f1_diff": 0.0034,
+      "avg_auc_diff": 0.281,
+      "real_auc": 0.8664,
+      "synthetic_auc": 0.5854,
+      "avg_jsd": 0.1076625879318391,
+      "avg_wd": 0.016515786741252664,
+      "diff_corr": 11.881808718002258
+    },
+    {
+      "seed": 6,
+      "elapsed_s": 174.8,
+      "avg_accuracy_diff": 0.2625,
+      "avg_f1_diff": 0.0033,
+      "avg_auc_diff": 0.2607,
+      "real_auc": 0.8707,
+      "synthetic_auc": 0.6394,
+      "avg_jsd": 0.10394047086542829,
+      "avg_wd": 0.01850535614924395,
+      "diff_corr": 11.09421771412385
+    }
+  ]
+}

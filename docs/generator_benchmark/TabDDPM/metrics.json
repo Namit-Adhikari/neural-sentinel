@@ -1,0 +1,41 @@
+{
+  "synthesizer": "TabDDPM",
+  "seeds": [
+    {
+      "seed": 42,
+      "elapsed_s": 283.0,
+      "avg_accuracy_diff": 0.3375,
+      "avg_f1_diff": 0.0037,
+      "avg_auc_diff": 0.231,
+      "real_auc": 0.8707,
+      "synthetic_auc": 0.6396,
+      "avg_jsd": 0.07990158280014134,
+      "avg_wd": 0.40347030372382153,
+      "diff_corr": 11.930307169760502
+    },
+    {
+      "seed": 4,
+      "elapsed_s": 283.2,
+      "avg_accuracy_diff": 0.1625,
+      "avg_f1_diff": 0.0022,
+      "avg_auc_diff": 0.1257,
+      "real_auc": 0.8664,
+      "synthetic_auc": 0.7407,
+      "avg_jsd": 0.09658689934819849,
+      "avg_wd": 0.4021987671214282,
+      "diff_corr": 12.337854076568133
+    },
+    {
+      "seed": 6,
+      "elapsed_s": 282.2,
+      "avg_accuracy_diff": 0.8625,
+      "avg_f1_diff": 0.0063,
+      "avg_auc_diff": 0.3062,
+      "real_auc": 0.8707,
+      "synthetic_auc": 0.5645,
+      "avg_jsd": 0.07758800757296835,
+      "avg_wd": 0.4021581722370289,
+      "diff_corr": 191140184.17305857
+    }
+  ]
+}

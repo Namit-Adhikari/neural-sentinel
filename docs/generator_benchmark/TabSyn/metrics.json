@@ -1,0 +1,17 @@
+{
+  "synthesizer": "TabSyn",
+  "seeds": [
+    {
+      "seed": 42,
+      "elapsed_s": 163.8,
+      "avg_accuracy_diff": 0.0,
+      "avg_f1_diff": 0.0,
+      "avg_auc_diff": 0.0165,
+      "real_auc": 0.4992,
+      "synthetic_auc": 0.5157,
+      "avg_jsd": 0.01771179947708003,
+      "avg_wd": 0.019168334143309124,
+      "diff_corr": 54535826.03412937
+    }
+  ]
+}

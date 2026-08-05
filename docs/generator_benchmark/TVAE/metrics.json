@@ -1,0 +1,41 @@
+{
+  "synthesizer": "TVAE",
+  "seeds": [
+    {
+      "seed": 42,
+      "elapsed_s": 166.5,
+      "avg_accuracy_diff": 0.0,
+      "avg_f1_diff": 0.0,
+      "avg_auc_diff": 0.0003,
+      "real_auc": 0.4992,
+      "synthetic_auc": 0.499,
+      "avg_jsd": 0.1387263858123733,
+      "avg_wd": 0.0671170989974782,
+      "diff_corr": 9.38222704938661
+    },
+    {
+      "seed": 4,
+      "elapsed_s": 152.2,
+      "avg_accuracy_diff": 0.0,
+      "avg_f1_diff": 0.0,
+      "avg_auc_diff": 0.2096,
+      "real_auc": 0.4995,
+      "synthetic_auc": 0.2899,
+      "avg_jsd": 0.13961714162728586,
+      "avg_wd": 0.07109817326801351,
+      "diff_corr": 9.388662810286057
+    },
+    {
+      "seed": 6,
+      "elapsed_s": 151.1,
+      "avg_accuracy_diff": 0.0,
+      "avg_f1_diff": 0.0,
+      "avg_auc_diff": 0.0531,
+      "real_auc": 0.5,
+      "synthetic_auc": 0.5531,
+      "avg_jsd": 0.13915581759443005,
+      "avg_wd": 0.10102291196057353,
+      "diff_corr": 9.472145530915963
+    }
+  ]
+}

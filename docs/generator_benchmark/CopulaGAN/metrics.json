@@ -1,0 +1,41 @@
+{
+  "synthesizer": "CopulaGAN",
+  "seeds": [
+    {
+      "seed": 42,
+      "elapsed_s": 338.9,
+      "avg_accuracy_diff": 1.05,
+      "avg_f1_diff": 0.0073,
+      "avg_auc_diff": 0.1326,
+      "real_auc": 0.8707,
+      "synthetic_auc": 0.7692,
+      "avg_jsd": 0.11742637394029214,
+      "avg_wd": 0.03413441134143745,
+      "diff_corr": 12.490351255063164
+    },
+    {
+      "seed": 4,
+      "elapsed_s": 346.1,
+      "avg_accuracy_diff": 0.7875,
+      "avg_f1_diff": 0.0059,
+      "avg_auc_diff": 0.1944,
+      "real_auc": 0.8664,
+      "synthetic_auc": 0.6719,
+      "avg_jsd": 0.11237725588797894,
+      "avg_wd": 0.06342146514551429,
+      "diff_corr": 12.503473259068938
+    },
+    {
+      "seed": 6,
+      "elapsed_s": 350.9,
+      "avg_accuracy_diff": 2.0875,
+      "avg_f1_diff": 0.0127,
+      "avg_auc_diff": 0.186,
+      "real_auc": 0.8707,
+      "synthetic_auc": 0.6989,
+      "avg_jsd": 0.11069572840773811,
+      "avg_wd": 0.05856393939829015,
+      "diff_corr": 12.407205785365912
+    }
+  ]
+}
