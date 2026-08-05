@@ -1,19 +1,20 @@
 import os
 import pandas as pd
-from sdv.single_table import CopulaGANSynthesizer
+from sdv.single_table import TVAESynthesizer
 from sdv.metadata import SingleTableMetadata
 from .base_generator import BaseGenerator
 
-class CopulaGANGenerator(BaseGenerator):
-    def __init__(self, epochs=30):
+class TVAEGenerator(BaseGenerator):
+    def __init__(self, config=None, epochs=30):
+        self.config = config or {}
         self.model = None
         self.metadata = None
-        self.epochs = epochs
+        self.epochs = self.config.get('epochs', epochs)
         
     def fit(self, data: pd.DataFrame):
         self.metadata = SingleTableMetadata()
         self.metadata.detect_from_dataframe(data)
-        self.model = CopulaGANSynthesizer(self.metadata, epochs=self.epochs)
+        self.model = TVAESynthesizer(self.metadata, epochs=self.epochs)
         self.model.fit(data)
         
     def generate(self, num_rows: int) -> pd.DataFrame:
@@ -28,8 +29,8 @@ class CopulaGANGenerator(BaseGenerator):
         self.model.save(path)
         
     @classmethod
-    def load(cls, path: str) -> "CopulaGANGenerator":
+    def load(cls, path: str) -> "TVAEGenerator":
         instance = cls()
-        instance.model = CopulaGANSynthesizer.load(path)
+        instance.model = TVAESynthesizer.load(path)
         instance.metadata = instance.model.metadata
         return instance

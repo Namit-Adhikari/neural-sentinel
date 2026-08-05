@@ -1,18 +1,20 @@
 import os
 import pandas as pd
-from sdv.single_table import GaussianCopulaSynthesizer
+from sdv.single_table import CTGANSynthesizer
 from sdv.metadata import SingleTableMetadata
 from .base_generator import BaseGenerator
 
-class GaussianCopulaGenerator(BaseGenerator):
-    def __init__(self):
+class CTGANGenerator(BaseGenerator):
+    def __init__(self, config=None, epochs=30):
+        self.config = config or {}
         self.model = None
         self.metadata = None
+        self.epochs = self.config.get('epochs', epochs)
         
     def fit(self, data: pd.DataFrame):
         self.metadata = SingleTableMetadata()
         self.metadata.detect_from_dataframe(data)
-        self.model = GaussianCopulaSynthesizer(self.metadata)
+        self.model = CTGANSynthesizer(self.metadata, epochs=self.epochs)
         self.model.fit(data)
         
     def generate(self, num_rows: int) -> pd.DataFrame:
@@ -27,8 +29,9 @@ class GaussianCopulaGenerator(BaseGenerator):
         self.model.save(path)
         
     @classmethod
-    def load(cls, path: str) -> "GaussianCopulaGenerator":
+    def load(cls, path: str) -> "CTGANGenerator":
         instance = cls()
-        instance.model = GaussianCopulaSynthesizer.load(path)
+        instance.model = CTGANSynthesizer.load(path)
+        # Hack to recover metadata if needed, though usually bound to model
         instance.metadata = instance.model.metadata
         return instance

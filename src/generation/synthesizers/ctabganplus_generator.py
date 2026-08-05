@@ -4,7 +4,7 @@ import logging
 from .base_generator import BaseGenerator
 
 try:
-    from ctabganplus.synthesizer.ctabganplus import CTABGANPlus
+    from sd import CTABGANPlus
     CTABGANPLUS_AVAILABLE = True
 except ImportError:
     CTABGANPLUS_AVAILABLE = False
@@ -30,6 +30,7 @@ class CTABGANPlusGenerator(BaseGenerator):
 
     def __init__(
         self,
+        config: dict | None = None,
         epochs: int = 150,
         batch_size: int = 500,
         lr: float = 2e-4,
@@ -42,13 +43,14 @@ class CTABGANPlusGenerator(BaseGenerator):
             raise ImportError(
                 "ctabganplus is required.  Install with:  pip install ctabganplus"
             )
-        self.epochs = epochs
-        self.batch_size = batch_size
-        self.lr = lr
-        self.class_dim = class_dim
-        self.random_dim = random_dim
-        self.num_channels = num_channels
-        self.test_ratio = test_ratio
+        self.config = config or {}
+        self.epochs      = self.config.get("epochs",       epochs)
+        self.batch_size  = self.config.get("batch_size",   batch_size)
+        self.lr          = self.config.get("lr",           lr)
+        self.class_dim   = self.config.get("class_dim",    class_dim)
+        self.random_dim  = self.config.get("random_dim",   random_dim)
+        self.num_channels = self.config.get("num_channels", num_channels)
+        self.test_ratio  = self.config.get("test_ratio",   test_ratio)
 
         self.model: CTABGANPlus | None = None
         self.is_fitted = False
