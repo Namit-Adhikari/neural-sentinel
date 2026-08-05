@@ -2,7 +2,7 @@
 
 Multi-agent financial fraud detection system for Nepali banking channels.
 
-## Setup
+
 
 ### Primary — uv (recommended for local development)
 
