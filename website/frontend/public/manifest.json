@@ -1,0 +1,18 @@
+{
+  "name": "NeuralSentinel",
+  "short_name": "NeuralSentinel",
+  "description": "AI-Powered Fraudulent Transaction Detection System for Nepali Banking Channels",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo-light.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
