@@ -1,0 +1,21 @@
+{
+  "start_time": "2026-08-05T19:48:33Z",
+  "end_time": "2026-08-05T19:48:36Z",
+  "elapsed_seconds": 2.38,
+  "row_counts": {
+    "accounts": 10000,
+    "transactions": 106277
+  },
+  "fraud_stats": {
+    "total_rows": 106277,
+    "fraud_rows": 6277,
+    "fraud_rate": 0.059063,
+    "fraud_by_type": {
+      "transaction_fraud": 3881,
+      "aml_mule_network": 1032,
+      "aml_layering": 796,
+      "aml_structuring": 468,
+      "identity_fraud": 100
+    }
+  }
+}

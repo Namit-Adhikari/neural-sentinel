@@ -1,0 +1,26 @@
+{
+  "accounts": {
+    "duplicate_account_id": 0,
+    "invalid_city": 3633,
+    "future_opened_date": 0,
+    "total_rows": 10000,
+    "total_violations": 3633
+  },
+  "transactions": {
+    "total_rows": 106277,
+    "invalid_sender": 0,
+    "invalid_receiver": 0,
+    "non_positive_amount": 0,
+    "invalid_timestamp": 0,
+    "invalid_currency": 0,
+    "wrong_day_of_week": 0,
+    "wrong_is_weekend": 0,
+    "wrong_above_1M_flag": 0,
+    "invalid_transmode_encoding": 0,
+    "negative_sender_account_age_days": 0,
+    "negative_receiver_account_age_days": 0,
+    "rows_passed": 106277,
+    "rows_failed": 0,
+    "total_violations": 0
+  }
+}

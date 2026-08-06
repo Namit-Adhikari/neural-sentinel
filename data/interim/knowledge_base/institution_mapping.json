@@ -1,0 +1,4118 @@
+{
+  "HBL": {
+    "branches": {
+      "BR_002": {
+        "city": "Hetauda",
+        "count": 87
+      },
+      "BR_026": {
+        "city": "Kathmandu",
+        "count": 81
+      },
+      "BR_044": {
+        "city": "Pokhara",
+        "count": 82
+      },
+      "BR_017": {
+        "city": "Tulsipur",
+        "count": 79
+      },
+      "BR_033": {
+        "city": "Pokhara",
+        "count": 86
+      },
+      "BR_046": {
+        "city": "Tulsipur",
+        "count": 88
+      },
+      "BR_019": {
+        "city": "Biratnagar",
+        "count": 84
+      },
+      "BR_039": {
+        "city": "Itahari",
+        "count": 89
+      },
+      "BR_007": {
+        "city": "Butwal",
+        "count": 90
+      },
+      "BR_034": {
+        "city": "Hetauda",
+        "count": 109
+      },
+      "BR_005": {
+        "city": "Biratnagar",
+        "count": 4
+      },
+      "BR_040": {
+        "city": "Dharan",
+        "count": 98
+      },
+      "BR_042": {
+        "city": "Biratnagar",
+        "count": 82
+      },
+      "BR_006": {
+        "city": "Kathmandu",
+        "count": 92
+      },
+      "BR_003": {
+        "city": "Birgunj",
+        "count": 87
+      },
+      "BR_012": {
+        "city": "Bhairahawa",
+        "count": 91
+      },
+      "BR_004": {
+        "city": "Lalitpur",
+        "count": 77
+      },
+      "BR_009": {
+        "city": "Ghorahi",
+        "count": 107
+      },
+      "BR_016": {
+        "city": "Itahari",
+        "count": 86
+      },
+      "BR_043": {
+        "city": "Bharatpur",
+        "count": 86
+      },
+      "BR_020": {
+        "city": "Hetauda",
+        "count": 88
+      },
+      "BR_032": {
+        "city": "Biratnagar",
+        "count": 103
+      },
+      "BR_047": {
+        "city": "Ghorahi",
+        "count": 89
+      },
+      "BR_027": {
+        "city": "Biratnagar",
+        "count": 85
+      },
+      "BR_000": {
+        "city": "Tulsipur",
+        "count": 94
+      },
+      "BR_029": {
+        "city": "Tulsipur",
+        "count": 94
+      },
+      "BR_036": {
+        "city": "Bhairahawa",
+        "count": 95
+      },
+      "BR_031": {
+        "city": "Bhairahawa",
+        "count": 5
+      },
+      "BR_023": {
+        "city": "Nepalgunj",
+        "count": 86
+      },
+      "BR_013": {
+        "city": "Tulsipur",
+        "count": 90
+      },
+      "BR_049": {
+        "city": "Bhairahawa",
+        "count": 91
+      },
+      "BR_010": {
+        "city": "Pokhara",
+        "count": 90
+      },
+      "BR_024": {
+        "city": "Dharan",
+        "count": 78
+      },
+      "BR_022": {
+        "city": "Pokhara",
+        "count": 102
+      },
+      "BR_037": {
+        "city": "Kathmandu",
+        "count": 81
+      },
+      "BR_030": {
+        "city": "Dharan",
+        "count": 86
+      },
+      "BR_011": {
+        "city": "Ghorahi",
+        "count": 4
+      },
+      "BR_014": {
+        "city": "Janakpur",
+        "count": 88
+      },
+      "BR_048": {
+        "city": "Ghorahi",
+        "count": 3
+      },
+      "BR_008": {
+        "city": "Janakpur",
+        "count": 6
+      },
+      "BR_035": {
+        "city": "Birgunj",
+        "count": 6
+      },
+      "BR_045": {
+        "city": "Janakpur",
+        "count": 7
+      },
+      "BR_021": {
+        "city": "Bhairahawa",
+        "count": 9
+      },
+      "BR_038": {
+        "city": "Kathmandu",
+        "count": 4
+      },
+      "BR_025": {
+        "city": "Ghorahi",
+        "count": 8
+      },
+      "BR_028": {
+        "city": "Tulsipur",
+        "count": 5
+      },
+      "BR_018": {
+        "city": "Bharatpur",
+        "count": 2
+      },
+      "BR_001": {
+        "city": "Dharan",
+        "count": 5
+      },
+      "BR_015": {
+        "city": "Bhairahawa",
+        "count": 1
+      },
+      "BR_041": {
+        "city": "Dharan",
+        "count": 1
+      }
+    },
+    "frequency": 3191,
+    "weight": 0.04883760082033701
+  },
+  "NCC": {
+    "branches": {
+      "BR_010": {
+        "city": "Ghorahi",
+        "count": 92
+      },
+      "BR_035": {
+        "city": "Butwal",
+        "count": 97
+      },
+      "BR_027": {
+        "city": "Birgunj",
+        "count": 91
+      },
+      "BR_030": {
+        "city": "Dharan",
+        "count": 99
+      },
+      "BR_005": {
+        "city": "Birgunj",
+        "count": 81
+      },
+      "BR_048": {
+        "city": "Lalitpur",
+        "count": 93
+      },
+      "BR_032": {
+        "city": "Ghorahi",
+        "count": 84
+      },
+      "BR_041": {
+        "city": "Itahari",
+        "count": 100
+      },
+      "BR_022": {
+        "city": "Bhairahawa",
+        "count": 97
+      },
+      "BR_014": {
+        "city": "Bhairahawa",
+        "count": 66
+      },
+      "BR_001": {
+        "city": "Bhairahawa",
+        "count": 109
+      },
+      "BR_021": {
+        "city": "Kathmandu",
+        "count": 90
+      },
+      "BR_011": {
+        "city": "Kathmandu",
+        "count": 99
+      },
+      "BR_007": {
+        "city": "Tulsipur",
+        "count": 83
+      },
+      "BR_037": {
+        "city": "Butwal",
+        "count": 108
+      },
+      "BR_034": {
+        "city": "Butwal",
+        "count": 92
+      },
+      "BR_000": {
+        "city": "Janakpur",
+        "count": 73
+      },
+      "BR_047": {
+        "city": "Lalitpur",
+        "count": 77
+      },
+      "BR_009": {
+        "city": "Itahari",
+        "count": 6
+      },
+      "BR_012": {
+        "city": "Janakpur",
+        "count": 90
+      },
+      "BR_031": {
+        "city": "Pokhara",
+        "count": 90
+      },
+      "BR_020": {
+        "city": "Kathmandu",
+        "count": 100
+      },
+      "BR_029": {
+        "city": "Itahari",
+        "count": 10
+      },
+      "BR_045": {
+        "city": "Kathmandu",
+        "count": 98
+      },
+      "BR_044": {
+        "city": "Lalitpur",
+        "count": 86
+      },
+      "BR_004": {
+        "city": "Lalitpur",
+        "count": 87
+      },
+      "BR_038": {
+        "city": "Lalitpur",
+        "count": 90
+      },
+      "BR_025": {
+        "city": "Nepalgunj",
+        "count": 90
+      },
+      "BR_040": {
+        "city": "Tulsipur",
+        "count": 95
+      },
+      "BR_042": {
+        "city": "Dharan",
+        "count": 73
+      },
+      "BR_008": {
+        "city": "Lalitpur",
+        "count": 93
+      },
+      "BR_002": {
+        "city": "Dharan",
+        "count": 77
+      },
+      "BR_028": {
+        "city": "Itahari",
+        "count": 93
+      },
+      "BR_016": {
+        "city": "Hetauda",
+        "count": 9
+      },
+      "BR_017": {
+        "city": "Janakpur",
+        "count": 75
+      },
+      "BR_024": {
+        "city": "Ghorahi",
+        "count": 78
+      },
+      "BR_018": {
+        "city": "Janakpur",
+        "count": 101
+      },
+      "BR_015": {
+        "city": "Tulsipur",
+        "count": 93
+      },
+      "BR_036": {
+        "city": "Nepalgunj",
+        "count": 14
+      },
+      "BR_039": {
+        "city": "Biratnagar",
+        "count": 8
+      },
+      "BR_049": {
+        "city": "Biratnagar",
+        "count": 10
+      },
+      "BR_046": {
+        "city": "Lalitpur",
+        "count": 9
+      },
+      "BR_033": {
+        "city": "Pokhara",
+        "count": 2
+      },
+      "BR_006": {
+        "city": "Tulsipur",
+        "count": 10
+      },
+      "BR_013": {
+        "city": "Ghorahi",
+        "count": 8
+      },
+      "BR_026": {
+        "city": "Pokhara",
+        "count": 10
+      },
+      "BR_019": {
+        "city": "Hetauda",
+        "count": 9
+      },
+      "BR_043": {
+        "city": "Ghorahi",
+        "count": 8
+      },
+      "BR_023": {
+        "city": "Kathmandu",
+        "count": 2
+      },
+      "BR_003": {
+        "city": "Lalitpur",
+        "count": 2
+      }
+    },
+    "frequency": 3257,
+    "weight": 0.049847717289826905
+  },
+  "CBL": {
+    "branches": {
+      "BR_001": {
+        "city": "Birgunj",
+        "count": 91
+      },
+      "BR_035": {
+        "city": "Kathmandu",
+        "count": 80
+      },
+      "BR_024": {
+        "city": "Lalitpur",
+        "count": 95
+      },
+      "BR_029": {
+        "city": "Tulsipur",
+        "count": 96
+      },
+      "BR_009": {
+        "city": "Tulsipur",
+        "count": 100
+      },
+      "BR_007": {
+        "city": "Nepalgunj",
+        "count": 83
+      },
+      "BR_039": {
+        "city": "Bhairahawa",
+        "count": 101
+      },
+      "BR_044": {
+        "city": "Birgunj",
+        "count": 110
+      },
+      "BR_031": {
+        "city": "Kathmandu",
+        "count": 81
+      },
+      "BR_025": {
+        "city": "Bhairahawa",
+        "count": 91
+      },
+      "BR_011": {
+        "city": "Nepalgunj",
+        "count": 89
+      },
+      "BR_017": {
+        "city": "Dharan",
+        "count": 76
+      },
+      "BR_002": {
+        "city": "Biratnagar",
+        "count": 98
+      },
+      "BR_038": {
+        "city": "Kathmandu",
+        "count": 114
+      },
+      "BR_008": {
+        "city": "Janakpur",
+        "count": 100
+      },
+      "BR_045": {
+        "city": "Nepalgunj",
+        "count": 96
+      },
+      "BR_028": {
+        "city": "Lalitpur",
+        "count": 70
+      },
+      "BR_010": {
+        "city": "Nepalgunj",
+        "count": 9
+      },
+      "BR_022": {
+        "city": "Bhairahawa",
+        "count": 93
+      },
+      "BR_049": {
+        "city": "Kathmandu",
+        "count": 94
+      },
+      "BR_005": {
+        "city": "Bhairahawa",
+        "count": 86
+      },
+      "BR_018": {
+        "city": "Tulsipur",
+        "count": 80
+      },
+      "BR_048": {
+        "city": "Bhairahawa",
+        "count": 98
+      },
+      "BR_004": {
+        "city": "Ghorahi",
+        "count": 74
+      },
+      "BR_027": {
+        "city": "Tulsipur",
+        "count": 89
+      },
+      "BR_034": {
+        "city": "Biratnagar",
+        "count": 97
+      },
+      "BR_014": {
+        "city": "Biratnagar",
+        "count": 90
+      },
+      "BR_041": {
+        "city": "Lalitpur",
+        "count": 92
+      },
+      "BR_019": {
+        "city": "Biratnagar",
+        "count": 84
+      },
+      "BR_030": {
+        "city": "Ghorahi",
+        "count": 7
+      },
+      "BR_021": {
+        "city": "Hetauda",
+        "count": 96
+      },
+      "BR_032": {
+        "city": "Itahari",
+        "count": 82
+      },
+      "BR_042": {
+        "city": "Butwal",
+        "count": 94
+      },
+      "BR_012": {
+        "city": "Butwal",
+        "count": 80
+      },
+      "BR_000": {
+        "city": "Biratnagar",
+        "count": 8
+      },
+      "BR_047": {
+        "city": "Bharatpur",
+        "count": 91
+      },
+      "BR_006": {
+        "city": "Ghorahi",
+        "count": 8
+      },
+      "BR_015": {
+        "city": "Bhairahawa",
+        "count": 75
+      },
+      "BR_037": {
+        "city": "Biratnagar",
+        "count": 95
+      },
+      "BR_020": {
+        "city": "Ghorahi",
+        "count": 5
+      },
+      "BR_023": {
+        "city": "Biratnagar",
+        "count": 7
+      },
+      "BR_026": {
+        "city": "Hetauda",
+        "count": 7
+      },
+      "BR_016": {
+        "city": "Hetauda",
+        "count": 6
+      },
+      "BR_003": {
+        "city": "Dharan",
+        "count": 5
+      },
+      "BR_046": {
+        "city": "Biratnagar",
+        "count": 7
+      },
+      "BR_013": {
+        "city": "Janakpur",
+        "count": 10
+      },
+      "BR_043": {
+        "city": "Nepalgunj",
+        "count": 3
+      },
+      "BR_036": {
+        "city": "Itahari",
+        "count": 4
+      },
+      "BR_040": {
+        "city": "Bhairahawa",
+        "count": 3
+      },
+      "BR_033": {
+        "city": "Pokhara",
+        "count": 5
+      }
+    },
+    "frequency": 3255,
+    "weight": 0.049817107699842364
+  },
+  "MEGA": {
+    "branches": {
+      "BR_040": {
+        "city": "Itahari",
+        "count": 77
+      },
+      "BR_024": {
+        "city": "Nepalgunj",
+        "count": 91
+      },
+      "BR_037": {
+        "city": "Butwal",
+        "count": 94
+      },
+      "BR_000": {
+        "city": "Hetauda",
+        "count": 85
+      },
+      "BR_029": {
+        "city": "Lalitpur",
+        "count": 102
+      },
+      "BR_014": {
+        "city": "Pokhara",
+        "count": 92
+      },
+      "BR_026": {
+        "city": "Lalitpur",
+        "count": 95
+      },
+      "BR_027": {
+        "city": "Birgunj",
+        "count": 92
+      },
+      "BR_007": {
+        "city": "Lalitpur",
+        "count": 103
+      },
+      "BR_039": {
+        "city": "Ghorahi",
+        "count": 95
+      },
+      "BR_036": {
+        "city": "Itahari",
+        "count": 88
+      },
+      "BR_041": {
+        "city": "Dharan",
+        "count": 113
+      },
+      "BR_021": {
+        "city": "Birgunj",
+        "count": 87
+      },
+      "BR_009": {
+        "city": "Lalitpur",
+        "count": 89
+      },
+      "BR_003": {
+        "city": "Bhairahawa",
+        "count": 78
+      },
+      "BR_023": {
+        "city": "Ghorahi",
+        "count": 91
+      },
+      "BR_034": {
+        "city": "Hetauda",
+        "count": 79
+      },
+      "BR_020": {
+        "city": "Pokhara",
+        "count": 104
+      },
+      "BR_047": {
+        "city": "Lalitpur",
+        "count": 101
+      },
+      "BR_044": {
+        "city": "Lalitpur",
+        "count": 91
+      },
+      "BR_043": {
+        "city": "Tulsipur",
+        "count": 80
+      },
+      "BR_019": {
+        "city": "Butwal",
+        "count": 97
+      },
+      "BR_006": {
+        "city": "Biratnagar",
+        "count": 84
+      },
+      "BR_022": {
+        "city": "Bharatpur",
+        "count": 4
+      },
+      "BR_010": {
+        "city": "Itahari",
+        "count": 96
+      },
+      "BR_031": {
+        "city": "Bhairahawa",
+        "count": 91
+      },
+      "BR_001": {
+        "city": "Birgunj",
+        "count": 82
+      },
+      "BR_017": {
+        "city": "Bhairahawa",
+        "count": 85
+      },
+      "BR_045": {
+        "city": "Birgunj",
+        "count": 6
+      },
+      "BR_016": {
+        "city": "Birgunj",
+        "count": 86
+      },
+      "BR_004": {
+        "city": "Nepalgunj",
+        "count": 79
+      },
+      "BR_032": {
+        "city": "Nepalgunj",
+        "count": 11
+      },
+      "BR_033": {
+        "city": "Ghorahi",
+        "count": 81
+      },
+      "BR_049": {
+        "city": "Bhairahawa",
+        "count": 83
+      },
+      "BR_002": {
+        "city": "Butwal",
+        "count": 4
+      },
+      "BR_011": {
+        "city": "Tulsipur",
+        "count": 95
+      },
+      "BR_030": {
+        "city": "Tulsipur",
+        "count": 88
+      },
+      "BR_038": {
+        "city": "Butwal",
+        "count": 2
+      },
+      "BR_046": {
+        "city": "Janakpur",
+        "count": 91
+      },
+      "BR_028": {
+        "city": "Ghorahi",
+        "count": 7
+      },
+      "BR_005": {
+        "city": "Itahari",
+        "count": 5
+      },
+      "BR_013": {
+        "city": "Pokhara",
+        "count": 91
+      },
+      "BR_035": {
+        "city": "Tulsipur",
+        "count": 6
+      },
+      "BR_042": {
+        "city": "Nepalgunj",
+        "count": 6
+      },
+      "BR_012": {
+        "city": "Janakpur",
+        "count": 4
+      },
+      "BR_048": {
+        "city": "Ghorahi",
+        "count": 6
+      },
+      "BR_025": {
+        "city": "Itahari",
+        "count": 9
+      },
+      "BR_018": {
+        "city": "Butwal",
+        "count": 3
+      },
+      "BR_008": {
+        "city": "Hetauda",
+        "count": 5
+      },
+      "BR_015": {
+        "city": "Bharatpur",
+        "count": 9
+      }
+    },
+    "frequency": 3243,
+    "weight": 0.04963345015993511
+  },
+  "SUNRISE": {
+    "branches": {
+      "BR_026": {
+        "city": "Pokhara",
+        "count": 85
+      },
+      "BR_011": {
+        "city": "Lalitpur",
+        "count": 89
+      },
+      "BR_001": {
+        "city": "Birgunj",
+        "count": 83
+      },
+      "BR_024": {
+        "city": "Itahari",
+        "count": 74
+      },
+      "BR_038": {
+        "city": "Pokhara",
+        "count": 102
+      },
+      "BR_034": {
+        "city": "Ghorahi",
+        "count": 77
+      },
+      "BR_002": {
+        "city": "Bhairahawa",
+        "count": 100
+      },
+      "BR_015": {
+        "city": "Bhairahawa",
+        "count": 93
+      },
+      "BR_048": {
+        "city": "Pokhara",
+        "count": 102
+      },
+      "BR_031": {
+        "city": "Bharatpur",
+        "count": 90
+      },
+      "BR_035": {
+        "city": "Butwal",
+        "count": 92
+      },
+      "BR_007": {
+        "city": "Lalitpur",
+        "count": 12
+      },
+      "BR_018": {
+        "city": "Tulsipur",
+        "count": 83
+      },
+      "BR_029": {
+        "city": "Birgunj",
+        "count": 81
+      },
+      "BR_019": {
+        "city": "Dharan",
+        "count": 89
+      },
+      "BR_036": {
+        "city": "Pokhara",
+        "count": 101
+      },
+      "BR_022": {
+        "city": "Pokhara",
+        "count": 95
+      },
+      "BR_049": {
+        "city": "Janakpur",
+        "count": 94
+      },
+      "BR_005": {
+        "city": "Bhairahawa",
+        "count": 90
+      },
+      "BR_008": {
+        "city": "Bharatpur",
+        "count": 99
+      },
+      "BR_004": {
+        "city": "Bhairahawa",
+        "count": 93
+      },
+      "BR_044": {
+        "city": "Ghorahi",
+        "count": 87
+      },
+      "BR_045": {
+        "city": "Birgunj",
+        "count": 79
+      },
+      "BR_006": {
+        "city": "Lalitpur",
+        "count": 91
+      },
+      "BR_016": {
+        "city": "Pokhara",
+        "count": 94
+      },
+      "BR_041": {
+        "city": "Lalitpur",
+        "count": 91
+      },
+      "BR_046": {
+        "city": "Janakpur",
+        "count": 79
+      },
+      "BR_042": {
+        "city": "Lalitpur",
+        "count": 98
+      },
+      "BR_032": {
+        "city": "Bharatpur",
+        "count": 92
+      },
+      "BR_039": {
+        "city": "Birgunj",
+        "count": 89
+      },
+      "BR_028": {
+        "city": "Ghorahi",
+        "count": 98
+      },
+      "BR_021": {
+        "city": "Ghorahi",
+        "count": 85
+      },
+      "BR_025": {
+        "city": "Lalitpur",
+        "count": 81
+      },
+      "BR_012": {
+        "city": "Kathmandu",
+        "count": 92
+      },
+      "BR_009": {
+        "city": "Butwal",
+        "count": 90
+      },
+      "BR_014": {
+        "city": "Janakpur",
+        "count": 70
+      },
+      "BR_020": {
+        "city": "Kathmandu",
+        "count": 11
+      },
+      "BR_033": {
+        "city": "Lalitpur",
+        "count": 6
+      },
+      "BR_047": {
+        "city": "Pokhara",
+        "count": 13
+      },
+      "BR_023": {
+        "city": "Birgunj",
+        "count": 6
+      },
+      "BR_043": {
+        "city": "Butwal",
+        "count": 6
+      },
+      "BR_027": {
+        "city": "Dharan",
+        "count": 5
+      },
+      "BR_040": {
+        "city": "Itahari",
+        "count": 2
+      },
+      "BR_037": {
+        "city": "Kathmandu",
+        "count": 8
+      },
+      "BR_017": {
+        "city": "Dharan",
+        "count": 7
+      },
+      "BR_010": {
+        "city": "Janakpur",
+        "count": 4
+      },
+      "BR_003": {
+        "city": "Biratnagar",
+        "count": 6
+      },
+      "BR_030": {
+        "city": "Pokhara",
+        "count": 4
+      },
+      "BR_013": {
+        "city": "Birgunj",
+        "count": 6
+      },
+      "BR_000": {
+        "city": "Tulsipur",
+        "count": 2
+      }
+    },
+    "frequency": 3226,
+    "weight": 0.0493732686450665
+  },
+  "KUMARI": {
+    "branches": {
+      "BR_044": {
+        "city": "Biratnagar",
+        "count": 4
+      },
+      "BR_013": {
+        "city": "Bharatpur",
+        "count": 95
+      },
+      "BR_011": {
+        "city": "Bhairahawa",
+        "count": 7
+      },
+      "BR_030": {
+        "city": "Hetauda",
+        "count": 103
+      },
+      "BR_027": {
+        "city": "Biratnagar",
+        "count": 104
+      },
+      "BR_035": {
+        "city": "Dharan",
+        "count": 98
+      },
+      "BR_016": {
+        "city": "Birgunj",
+        "count": 96
+      },
+      "BR_040": {
+        "city": "Janakpur",
+        "count": 90
+      },
+      "BR_023": {
+        "city": "Pokhara",
+        "count": 102
+      },
+      "BR_047": {
+        "city": "Butwal",
+        "count": 83
+      },
+      "BR_045": {
+        "city": "Butwal",
+        "count": 78
+      },
+      "BR_019": {
+        "city": "Itahari",
+        "count": 88
+      },
+      "BR_002": {
+        "city": "Dharan",
+        "count": 82
+      },
+      "BR_022": {
+        "city": "Hetauda",
+        "count": 110
+      },
+      "BR_015": {
+        "city": "Biratnagar",
+        "count": 87
+      },
+      "BR_017": {
+        "city": "Lalitpur",
+        "count": 98
+      },
+      "BR_012": {
+        "city": "Birgunj",
+        "count": 88
+      },
+      "BR_036": {
+        "city": "Ghorahi",
+        "count": 94
+      },
+      "BR_025": {
+        "city": "Bharatpur",
+        "count": 112
+      },
+      "BR_010": {
+        "city": "Nepalgunj",
+        "count": 90
+      },
+      "BR_033": {
+        "city": "Itahari",
+        "count": 82
+      },
+      "BR_005": {
+        "city": "Tulsipur",
+        "count": 74
+      },
+      "BR_006": {
+        "city": "Nepalgunj",
+        "count": 75
+      },
+      "BR_037": {
+        "city": "Tulsipur",
+        "count": 83
+      },
+      "BR_039": {
+        "city": "Itahari",
+        "count": 112
+      },
+      "BR_032": {
+        "city": "Biratnagar",
+        "count": 82
+      },
+      "BR_007": {
+        "city": "Tulsipur",
+        "count": 86
+      },
+      "BR_000": {
+        "city": "Kathmandu",
+        "count": 79
+      },
+      "BR_018": {
+        "city": "Itahari",
+        "count": 10
+      },
+      "BR_049": {
+        "city": "Ghorahi",
+        "count": 82
+      },
+      "BR_020": {
+        "city": "Kathmandu",
+        "count": 84
+      },
+      "BR_009": {
+        "city": "Nepalgunj",
+        "count": 100
+      },
+      "BR_026": {
+        "city": "Dharan",
+        "count": 94
+      },
+      "BR_043": {
+        "city": "Bharatpur",
+        "count": 87
+      },
+      "BR_029": {
+        "city": "Butwal",
+        "count": 86
+      },
+      "BR_003": {
+        "city": "Nepalgunj",
+        "count": 100
+      },
+      "BR_042": {
+        "city": "Biratnagar",
+        "count": 91
+      },
+      "BR_041": {
+        "city": "Janakpur",
+        "count": 7
+      },
+      "BR_021": {
+        "city": "Itahari",
+        "count": 7
+      },
+      "BR_014": {
+        "city": "Kathmandu",
+        "count": 6
+      },
+      "BR_046": {
+        "city": "Nepalgunj",
+        "count": 94
+      },
+      "BR_034": {
+        "city": "Dharan",
+        "count": 9
+      },
+      "BR_031": {
+        "city": "Birgunj",
+        "count": 5
+      },
+      "BR_001": {
+        "city": "Biratnagar",
+        "count": 6
+      },
+      "BR_048": {
+        "city": "Pokhara",
+        "count": 9
+      },
+      "BR_028": {
+        "city": "Bhairahawa",
+        "count": 9
+      },
+      "BR_008": {
+        "city": "Pokhara",
+        "count": 5
+      },
+      "BR_024": {
+        "city": "Birgunj",
+        "count": 5
+      },
+      "BR_004": {
+        "city": "Hetauda",
+        "count": 7
+      },
+      "BR_038": {
+        "city": "Janakpur",
+        "count": 5
+      }
+    },
+    "frequency": 3290,
+    "weight": 0.05035277552457185
+  },
+  "MBL": {
+    "branches": {
+      "BR_015": {
+        "city": "Kathmandu",
+        "count": 98
+      },
+      "BR_016": {
+        "city": "Dharan",
+        "count": 79
+      },
+      "BR_005": {
+        "city": "Bharatpur",
+        "count": 76
+      },
+      "BR_009": {
+        "city": "Lalitpur",
+        "count": 94
+      },
+      "BR_030": {
+        "city": "Biratnagar",
+        "count": 92
+      },
+      "BR_049": {
+        "city": "Kathmandu",
+        "count": 93
+      },
+      "BR_012": {
+        "city": "Bhairahawa",
+        "count": 87
+      },
+      "BR_020": {
+        "city": "Bharatpur",
+        "count": 108
+      },
+      "BR_037": {
+        "city": "Nepalgunj",
+        "count": 99
+      },
+      "BR_027": {
+        "city": "Biratnagar",
+        "count": 81
+      },
+      "BR_035": {
+        "city": "Ghorahi",
+        "count": 79
+      },
+      "BR_013": {
+        "city": "Bhairahawa",
+        "count": 88
+      },
+      "BR_007": {
+        "city": "Janakpur",
+        "count": 102
+      },
+      "BR_022": {
+        "city": "Tulsipur",
+        "count": 90
+      },
+      "BR_036": {
+        "city": "Bhairahawa",
+        "count": 99
+      },
+      "BR_017": {
+        "city": "Ghorahi",
+        "count": 87
+      },
+      "BR_032": {
+        "city": "Kathmandu",
+        "count": 99
+      },
+      "BR_029": {
+        "city": "Lalitpur",
+        "count": 91
+      },
+      "BR_040": {
+        "city": "Janakpur",
+        "count": 93
+      },
+      "BR_025": {
+        "city": "Janakpur",
+        "count": 97
+      },
+      "BR_043": {
+        "city": "Ghorahi",
+        "count": 84
+      },
+      "BR_046": {
+        "city": "Kathmandu",
+        "count": 88
+      },
+      "BR_002": {
+        "city": "Nepalgunj",
+        "count": 85
+      },
+      "BR_023": {
+        "city": "Tulsipur",
+        "count": 92
+      },
+      "BR_047": {
+        "city": "Pokhara",
+        "count": 100
+      },
+      "BR_006": {
+        "city": "Kathmandu",
+        "count": 92
+      },
+      "BR_033": {
+        "city": "Lalitpur",
+        "count": 91
+      },
+      "BR_026": {
+        "city": "Biratnagar",
+        "count": 91
+      },
+      "BR_000": {
+        "city": "Lalitpur",
+        "count": 80
+      },
+      "BR_010": {
+        "city": "Itahari",
+        "count": 91
+      },
+      "BR_028": {
+        "city": "Bharatpur",
+        "count": 6
+      },
+      "BR_039": {
+        "city": "Ghorahi",
+        "count": 86
+      },
+      "BR_024": {
+        "city": "Bharatpur",
+        "count": 4
+      },
+      "BR_045": {
+        "city": "Biratnagar",
+        "count": 87
+      },
+      "BR_003": {
+        "city": "Butwal",
+        "count": 88
+      },
+      "BR_041": {
+        "city": "Nepalgunj",
+        "count": 6
+      },
+      "BR_042": {
+        "city": "Butwal",
+        "count": 87
+      },
+      "BR_019": {
+        "city": "Ghorahi",
+        "count": 97
+      },
+      "BR_038": {
+        "city": "Tulsipur",
+        "count": 6
+      },
+      "BR_011": {
+        "city": "Birgunj",
+        "count": 4
+      },
+      "BR_004": {
+        "city": "Janakpur",
+        "count": 7
+      },
+      "BR_018": {
+        "city": "Birgunj",
+        "count": 6
+      },
+      "BR_014": {
+        "city": "Bharatpur",
+        "count": 9
+      },
+      "BR_031": {
+        "city": "Dharan",
+        "count": 6
+      },
+      "BR_048": {
+        "city": "Ghorahi",
+        "count": 4
+      },
+      "BR_044": {
+        "city": "Dharan",
+        "count": 3
+      },
+      "BR_001": {
+        "city": "Janakpur",
+        "count": 12
+      },
+      "BR_008": {
+        "city": "Tulsipur",
+        "count": 2
+      },
+      "BR_021": {
+        "city": "Bhairahawa",
+        "count": 5
+      },
+      "BR_034": {
+        "city": "Bhairahawa",
+        "count": 4
+      }
+    },
+    "frequency": 3255,
+    "weight": 0.049817107699842364
+  },
+  "CITIZENS": {
+    "branches": {
+      "BR_043": {
+        "city": "Birgunj",
+        "count": 89
+      },
+      "BR_008": {
+        "city": "Bhairahawa",
+        "count": 90
+      },
+      "BR_025": {
+        "city": "Bhairahawa",
+        "count": 107
+      },
+      "BR_033": {
+        "city": "Tulsipur",
+        "count": 99
+      },
+      "BR_048": {
+        "city": "Itahari",
+        "count": 114
+      },
+      "BR_005": {
+        "city": "Itahari",
+        "count": 96
+      },
+      "BR_039": {
+        "city": "Kathmandu",
+        "count": 84
+      },
+      "BR_032": {
+        "city": "Birgunj",
+        "count": 70
+      },
+      "BR_018": {
+        "city": "Lalitpur",
+        "count": 92
+      },
+      "BR_019": {
+        "city": "Birgunj",
+        "count": 89
+      },
+      "BR_031": {
+        "city": "Bharatpur",
+        "count": 104
+      },
+      "BR_021": {
+        "city": "Bharatpur",
+        "count": 102
+      },
+      "BR_009": {
+        "city": "Ghorahi",
+        "count": 100
+      },
+      "BR_036": {
+        "city": "Biratnagar",
+        "count": 91
+      },
+      "BR_001": {
+        "city": "Kathmandu",
+        "count": 105
+      },
+      "BR_049": {
+        "city": "Butwal",
+        "count": 78
+      },
+      "BR_022": {
+        "city": "Ghorahi",
+        "count": 98
+      },
+      "BR_041": {
+        "city": "Butwal",
+        "count": 94
+      },
+      "BR_042": {
+        "city": "Janakpur",
+        "count": 82
+      },
+      "BR_011": {
+        "city": "Bhairahawa",
+        "count": 86
+      },
+      "BR_015": {
+        "city": "Biratnagar",
+        "count": 95
+      },
+      "BR_045": {
+        "city": "Ghorahi",
+        "count": 108
+      },
+      "BR_002": {
+        "city": "Nepalgunj",
+        "count": 96
+      },
+      "BR_029": {
+        "city": "Lalitpur",
+        "count": 95
+      },
+      "BR_026": {
+        "city": "Lalitpur",
+        "count": 97
+      },
+      "BR_028": {
+        "city": "Hetauda",
+        "count": 85
+      },
+      "BR_040": {
+        "city": "Tulsipur",
+        "count": 8
+      },
+      "BR_003": {
+        "city": "Butwal",
+        "count": 90
+      },
+      "BR_016": {
+        "city": "Birgunj",
+        "count": 96
+      },
+      "BR_038": {
+        "city": "Hetauda",
+        "count": 80
+      },
+      "BR_030": {
+        "city": "Dharan",
+        "count": 8
+      },
+      "BR_013": {
+        "city": "Hetauda",
+        "count": 70
+      },
+      "BR_006": {
+        "city": "Pokhara",
+        "count": 82
+      },
+      "BR_023": {
+        "city": "Birgunj",
+        "count": 90
+      },
+      "BR_034": {
+        "city": "Lalitpur",
+        "count": 7
+      },
+      "BR_012": {
+        "city": "Tulsipur",
+        "count": 82
+      },
+      "BR_046": {
+        "city": "Birgunj",
+        "count": 91
+      },
+      "BR_010": {
+        "city": "Lalitpur",
+        "count": 5
+      },
+      "BR_035": {
+        "city": "Lalitpur",
+        "count": 75
+      },
+      "BR_007": {
+        "city": "Nepalgunj",
+        "count": 13
+      },
+      "BR_044": {
+        "city": "Birgunj",
+        "count": 4
+      },
+      "BR_024": {
+        "city": "Dharan",
+        "count": 10
+      },
+      "BR_037": {
+        "city": "Tulsipur",
+        "count": 5
+      },
+      "BR_000": {
+        "city": "Nepalgunj",
+        "count": 5
+      },
+      "BR_020": {
+        "city": "Tulsipur",
+        "count": 3
+      },
+      "BR_017": {
+        "city": "Pokhara",
+        "count": 7
+      },
+      "BR_027": {
+        "city": "Hetauda",
+        "count": 7
+      },
+      "BR_047": {
+        "city": "Kathmandu",
+        "count": 6
+      },
+      "BR_014": {
+        "city": "Bhairahawa",
+        "count": 5
+      },
+      "BR_004": {
+        "city": "Lalitpur",
+        "count": 3
+      }
+    },
+    "frequency": 3298,
+    "weight": 0.05047521388451002
+  },
+  "EBL": {
+    "branches": {
+      "BR_045": {
+        "city": "Birgunj",
+        "count": 100
+      },
+      "BR_022": {
+        "city": "Bhairahawa",
+        "count": 90
+      },
+      "BR_035": {
+        "city": "Nepalgunj",
+        "count": 84
+      },
+      "BR_018": {
+        "city": "Butwal",
+        "count": 106
+      },
+      "BR_020": {
+        "city": "Pokhara",
+        "count": 79
+      },
+      "BR_032": {
+        "city": "Butwal",
+        "count": 91
+      },
+      "BR_029": {
+        "city": "Biratnagar",
+        "count": 99
+      },
+      "BR_046": {
+        "city": "Nepalgunj",
+        "count": 91
+      },
+      "BR_015": {
+        "city": "Dharan",
+        "count": 94
+      },
+      "BR_000": {
+        "city": "Itahari",
+        "count": 83
+      },
+      "BR_002": {
+        "city": "Dharan",
+        "count": 91
+      },
+      "BR_006": {
+        "city": "Kathmandu",
+        "count": 93
+      },
+      "BR_027": {
+        "city": "Tulsipur",
+        "count": 4
+      },
+      "BR_016": {
+        "city": "Janakpur",
+        "count": 87
+      },
+      "BR_013": {
+        "city": "Ghorahi",
+        "count": 93
+      },
+      "BR_023": {
+        "city": "Butwal",
+        "count": 90
+      },
+      "BR_003": {
+        "city": "Biratnagar",
+        "count": 83
+      },
+      "BR_048": {
+        "city": "Janakpur",
+        "count": 99
+      },
+      "BR_008": {
+        "city": "Janakpur",
+        "count": 82
+      },
+      "BR_043": {
+        "city": "Hetauda",
+        "count": 87
+      },
+      "BR_026": {
+        "city": "Tulsipur",
+        "count": 93
+      },
+      "BR_039": {
+        "city": "Janakpur",
+        "count": 93
+      },
+      "BR_030": {
+        "city": "Janakpur",
+        "count": 105
+      },
+      "BR_009": {
+        "city": "Janakpur",
+        "count": 111
+      },
+      "BR_033": {
+        "city": "Pokhara",
+        "count": 87
+      },
+      "BR_042": {
+        "city": "Biratnagar",
+        "count": 82
+      },
+      "BR_040": {
+        "city": "Birgunj",
+        "count": 98
+      },
+      "BR_036": {
+        "city": "Bhairahawa",
+        "count": 104
+      },
+      "BR_038": {
+        "city": "Pokhara",
+        "count": 65
+      },
+      "BR_001": {
+        "city": "Bhairahawa",
+        "count": 9
+      },
+      "BR_012": {
+        "city": "Ghorahi",
+        "count": 120
+      },
+      "BR_019": {
+        "city": "Butwal",
+        "count": 90
+      },
+      "BR_047": {
+        "city": "Birgunj",
+        "count": 8
+      },
+      "BR_025": {
+        "city": "Tulsipur",
+        "count": 89
+      },
+      "BR_049": {
+        "city": "Bharatpur",
+        "count": 76
+      },
+      "BR_028": {
+        "city": "Lalitpur",
+        "count": 103
+      },
+      "BR_037": {
+        "city": "Dharan",
+        "count": 8
+      },
+      "BR_041": {
+        "city": "Butwal",
+        "count": 7
+      },
+      "BR_024": {
+        "city": "Birgunj",
+        "count": 5
+      },
+      "BR_010": {
+        "city": "Tulsipur",
+        "count": 94
+      },
+      "BR_005": {
+        "city": "Itahari",
+        "count": 80
+      },
+      "BR_011": {
+        "city": "Itahari",
+        "count": 8
+      },
+      "BR_017": {
+        "city": "Biratnagar",
+        "count": 8
+      },
+      "BR_021": {
+        "city": "Kathmandu",
+        "count": 5
+      },
+      "BR_004": {
+        "city": "Lalitpur",
+        "count": 6
+      },
+      "BR_044": {
+        "city": "Dharan",
+        "count": 8
+      },
+      "BR_007": {
+        "city": "Bhairahawa",
+        "count": 2
+      },
+      "BR_031": {
+        "city": "Birgunj",
+        "count": 5
+      },
+      "BR_034": {
+        "city": "Pokhara",
+        "count": 8
+      },
+      "BR_014": {
+        "city": "Pokhara",
+        "count": 1
+      }
+    },
+    "frequency": 3304,
+    "weight": 0.05056704265446364
+  },
+  "PRABHU": {
+    "branches": {
+      "BR_035": {
+        "city": "Lalitpur",
+        "count": 82
+      },
+      "BR_017": {
+        "city": "Hetauda",
+        "count": 10
+      },
+      "BR_010": {
+        "city": "Ghorahi",
+        "count": 95
+      },
+      "BR_012": {
+        "city": "Nepalgunj",
+        "count": 81
+      },
+      "BR_039": {
+        "city": "Dharan",
+        "count": 88
+      },
+      "BR_025": {
+        "city": "Itahari",
+        "count": 83
+      },
+      "BR_000": {
+        "city": "Birgunj",
+        "count": 99
+      },
+      "BR_045": {
+        "city": "Itahari",
+        "count": 79
+      },
+      "BR_036": {
+        "city": "Nepalgunj",
+        "count": 84
+      },
+      "BR_024": {
+        "city": "Tulsipur",
+        "count": 14
+      },
+      "BR_019": {
+        "city": "Birgunj",
+        "count": 112
+      },
+      "BR_043": {
+        "city": "Ghorahi",
+        "count": 83
+      },
+      "BR_009": {
+        "city": "Tulsipur",
+        "count": 107
+      },
+      "BR_048": {
+        "city": "Lalitpur",
+        "count": 96
+      },
+      "BR_040": {
+        "city": "Lalitpur",
+        "count": 100
+      },
+      "BR_006": {
+        "city": "Ghorahi",
+        "count": 90
+      },
+      "BR_016": {
+        "city": "Pokhara",
+        "count": 89
+      },
+      "BR_028": {
+        "city": "Pokhara",
+        "count": 95
+      },
+      "BR_026": {
+        "city": "Ghorahi",
+        "count": 88
+      },
+      "BR_008": {
+        "city": "Biratnagar",
+        "count": 87
+      },
+      "BR_030": {
+        "city": "Kathmandu",
+        "count": 86
+      },
+      "BR_032": {
+        "city": "Bhairahawa",
+        "count": 90
+      },
+      "BR_046": {
+        "city": "Lalitpur",
+        "count": 89
+      },
+      "BR_049": {
+        "city": "Janakpur",
+        "count": 86
+      },
+      "BR_018": {
+        "city": "Nepalgunj",
+        "count": 100
+      },
+      "BR_042": {
+        "city": "Butwal",
+        "count": 102
+      },
+      "BR_002": {
+        "city": "Biratnagar",
+        "count": 102
+      },
+      "BR_003": {
+        "city": "Hetauda",
+        "count": 83
+      },
+      "BR_038": {
+        "city": "Hetauda",
+        "count": 83
+      },
+      "BR_037": {
+        "city": "Kathmandu",
+        "count": 8
+      },
+      "BR_022": {
+        "city": "Ghorahi",
+        "count": 93
+      },
+      "BR_005": {
+        "city": "Lalitpur",
+        "count": 89
+      },
+      "BR_023": {
+        "city": "Tulsipur",
+        "count": 88
+      },
+      "BR_020": {
+        "city": "Kathmandu",
+        "count": 84
+      },
+      "BR_001": {
+        "city": "Kathmandu",
+        "count": 6
+      },
+      "BR_015": {
+        "city": "Lalitpur",
+        "count": 108
+      },
+      "BR_044": {
+        "city": "Bharatpur",
+        "count": 5
+      },
+      "BR_033": {
+        "city": "Ghorahi",
+        "count": 83
+      },
+      "BR_029": {
+        "city": "Bhairahawa",
+        "count": 99
+      },
+      "BR_013": {
+        "city": "Nepalgunj",
+        "count": 88
+      },
+      "BR_027": {
+        "city": "Lalitpur",
+        "count": 7
+      },
+      "BR_034": {
+        "city": "Biratnagar",
+        "count": 6
+      },
+      "BR_004": {
+        "city": "Bharatpur",
+        "count": 10
+      },
+      "BR_007": {
+        "city": "Janakpur",
+        "count": 7
+      },
+      "BR_014": {
+        "city": "Butwal",
+        "count": 5
+      },
+      "BR_021": {
+        "city": "Lalitpur",
+        "count": 4
+      },
+      "BR_011": {
+        "city": "Itahari",
+        "count": 6
+      },
+      "BR_031": {
+        "city": "Butwal",
+        "count": 8
+      },
+      "BR_041": {
+        "city": "Bhairahawa",
+        "count": 4
+      },
+      "BR_047": {
+        "city": "Hetauda",
+        "count": 3
+      }
+    },
+    "frequency": 3294,
+    "weight": 0.05041399470454093
+  },
+  "SANIMA": {
+    "branches": {
+      "BR_040": {
+        "city": "Tulsipur",
+        "count": 79
+      },
+      "BR_027": {
+        "city": "Pokhara",
+        "count": 81
+      },
+      "BR_018": {
+        "city": "Nepalgunj",
+        "count": 104
+      },
+      "BR_001": {
+        "city": "Birgunj",
+        "count": 82
+      },
+      "BR_031": {
+        "city": "Birgunj",
+        "count": 94
+      },
+      "BR_037": {
+        "city": "Bhairahawa",
+        "count": 93
+      },
+      "BR_016": {
+        "city": "Nepalgunj",
+        "count": 80
+      },
+      "BR_000": {
+        "city": "Tulsipur",
+        "count": 80
+      },
+      "BR_044": {
+        "city": "Lalitpur",
+        "count": 83
+      },
+      "BR_004": {
+        "city": "Bharatpur",
+        "count": 97
+      },
+      "BR_028": {
+        "city": "Bharatpur",
+        "count": 85
+      },
+      "BR_048": {
+        "city": "Lalitpur",
+        "count": 88
+      },
+      "BR_010": {
+        "city": "Lalitpur",
+        "count": 94
+      },
+      "BR_024": {
+        "city": "Pokhara",
+        "count": 81
+      },
+      "BR_030": {
+        "city": "Bharatpur",
+        "count": 110
+      },
+      "BR_038": {
+        "city": "Biratnagar",
+        "count": 105
+      },
+      "BR_041": {
+        "city": "Bharatpur",
+        "count": 93
+      },
+      "BR_034": {
+        "city": "Butwal",
+        "count": 92
+      },
+      "BR_036": {
+        "city": "Kathmandu",
+        "count": 88
+      },
+      "BR_015": {
+        "city": "Ghorahi",
+        "count": 12
+      },
+      "BR_017": {
+        "city": "Pokhara",
+        "count": 94
+      },
+      "BR_046": {
+        "city": "Birgunj",
+        "count": 89
+      },
+      "BR_043": {
+        "city": "Kathmandu",
+        "count": 97
+      },
+      "BR_029": {
+        "city": "Lalitpur",
+        "count": 10
+      },
+      "BR_003": {
+        "city": "Bhairahawa",
+        "count": 88
+      },
+      "BR_013": {
+        "city": "Bhairahawa",
+        "count": 80
+      },
+      "BR_020": {
+        "city": "Itahari",
+        "count": 101
+      },
+      "BR_021": {
+        "city": "Tulsipur",
+        "count": 96
+      },
+      "BR_008": {
+        "city": "Bhairahawa",
+        "count": 87
+      },
+      "BR_002": {
+        "city": "Pokhara",
+        "count": 6
+      },
+      "BR_023": {
+        "city": "Nepalgunj",
+        "count": 81
+      },
+      "BR_026": {
+        "city": "Tulsipur",
+        "count": 97
+      },
+      "BR_022": {
+        "city": "Butwal",
+        "count": 5
+      },
+      "BR_014": {
+        "city": "Tulsipur",
+        "count": 87
+      },
+      "BR_047": {
+        "city": "Dharan",
+        "count": 88
+      },
+      "BR_007": {
+        "city": "Birgunj",
+        "count": 109
+      },
+      "BR_033": {
+        "city": "Butwal",
+        "count": 93
+      },
+      "BR_045": {
+        "city": "Lalitpur",
+        "count": 9
+      },
+      "BR_006": {
+        "city": "Bharatpur",
+        "count": 98
+      },
+      "BR_011": {
+        "city": "Dharan",
+        "count": 91
+      },
+      "BR_039": {
+        "city": "Biratnagar",
+        "count": 9
+      },
+      "BR_025": {
+        "city": "Biratnagar",
+        "count": 5
+      },
+      "BR_042": {
+        "city": "Birgunj",
+        "count": 8
+      },
+      "BR_032": {
+        "city": "Itahari",
+        "count": 3
+      },
+      "BR_005": {
+        "city": "Birgunj",
+        "count": 8
+      },
+      "BR_035": {
+        "city": "Itahari",
+        "count": 4
+      },
+      "BR_049": {
+        "city": "Tulsipur",
+        "count": 7
+      },
+      "BR_009": {
+        "city": "Birgunj",
+        "count": 3
+      },
+      "BR_019": {
+        "city": "Lalitpur",
+        "count": 4
+      },
+      "BR_012": {
+        "city": "Ghorahi",
+        "count": 2
+      }
+    },
+    "frequency": 3280,
+    "weight": 0.05019972757464914
+  },
+  "PCBL": {
+    "branches": {
+      "BR_035": {
+        "city": "Bharatpur",
+        "count": 74
+      },
+      "BR_048": {
+        "city": "Pokhara",
+        "count": 93
+      },
+      "BR_034": {
+        "city": "Janakpur",
+        "count": 106
+      },
+      "BR_015": {
+        "city": "Biratnagar",
+        "count": 101
+      },
+      "BR_009": {
+        "city": "Nepalgunj",
+        "count": 94
+      },
+      "BR_046": {
+        "city": "Lalitpur",
+        "count": 83
+      },
+      "BR_022": {
+        "city": "Janakpur",
+        "count": 84
+      },
+      "BR_026": {
+        "city": "Butwal",
+        "count": 102
+      },
+      "BR_024": {
+        "city": "Birgunj",
+        "count": 93
+      },
+      "BR_045": {
+        "city": "Pokhara",
+        "count": 98
+      },
+      "BR_018": {
+        "city": "Birgunj",
+        "count": 92
+      },
+      "BR_049": {
+        "city": "Lalitpur",
+        "count": 91
+      },
+      "BR_031": {
+        "city": "Bhairahawa",
+        "count": 99
+      },
+      "BR_028": {
+        "city": "Janakpur",
+        "count": 91
+      },
+      "BR_006": {
+        "city": "Ghorahi",
+        "count": 92
+      },
+      "BR_014": {
+        "city": "Bhairahawa",
+        "count": 70
+      },
+      "BR_039": {
+        "city": "Kathmandu",
+        "count": 88
+      },
+      "BR_005": {
+        "city": "Lalitpur",
+        "count": 95
+      },
+      "BR_041": {
+        "city": "Bharatpur",
+        "count": 91
+      },
+      "BR_004": {
+        "city": "Tulsipur",
+        "count": 103
+      },
+      "BR_038": {
+        "city": "Bharatpur",
+        "count": 84
+      },
+      "BR_036": {
+        "city": "Pokhara",
+        "count": 101
+      },
+      "BR_047": {
+        "city": "Tulsipur",
+        "count": 10
+      },
+      "BR_027": {
+        "city": "Tulsipur",
+        "count": 9
+      },
+      "BR_032": {
+        "city": "Biratnagar",
+        "count": 75
+      },
+      "BR_008": {
+        "city": "Itahari",
+        "count": 94
+      },
+      "BR_044": {
+        "city": "Tulsipur",
+        "count": 89
+      },
+      "BR_019": {
+        "city": "Nepalgunj",
+        "count": 101
+      },
+      "BR_012": {
+        "city": "Butwal",
+        "count": 63
+      },
+      "BR_042": {
+        "city": "Butwal",
+        "count": 81
+      },
+      "BR_002": {
+        "city": "Dharan",
+        "count": 84
+      },
+      "BR_001": {
+        "city": "Pokhara",
+        "count": 82
+      },
+      "BR_021": {
+        "city": "Pokhara",
+        "count": 75
+      },
+      "BR_040": {
+        "city": "Birgunj",
+        "count": 11
+      },
+      "BR_025": {
+        "city": "Butwal",
+        "count": 82
+      },
+      "BR_010": {
+        "city": "Lalitpur",
+        "count": 5
+      },
+      "BR_029": {
+        "city": "Biratnagar",
+        "count": 68
+      },
+      "BR_011": {
+        "city": "Itahari",
+        "count": 84
+      },
+      "BR_016": {
+        "city": "Itahari",
+        "count": 107
+      },
+      "BR_003": {
+        "city": "Lalitpur",
+        "count": 9
+      },
+      "BR_030": {
+        "city": "Hetauda",
+        "count": 6
+      },
+      "BR_037": {
+        "city": "Nepalgunj",
+        "count": 7
+      },
+      "BR_013": {
+        "city": "Hetauda",
+        "count": 7
+      },
+      "BR_023": {
+        "city": "Kathmandu",
+        "count": 2
+      },
+      "BR_033": {
+        "city": "Ghorahi",
+        "count": 5
+      },
+      "BR_017": {
+        "city": "Hetauda",
+        "count": 6
+      },
+      "BR_007": {
+        "city": "Tulsipur",
+        "count": 5
+      },
+      "BR_043": {
+        "city": "Bharatpur",
+        "count": 3
+      },
+      "BR_000": {
+        "city": "Tulsipur",
+        "count": 3
+      },
+      "BR_020": {
+        "city": "Kathmandu",
+        "count": 3
+      }
+    },
+    "frequency": 3201,
+    "weight": 0.04899064877025972
+  },
+  "NIMB": {
+    "branches": {
+      "BR_008": {
+        "city": "Bharatpur",
+        "count": 109
+      },
+      "BR_004": {
+        "city": "Birgunj",
+        "count": 79
+      },
+      "BR_017": {
+        "city": "Tulsipur",
+        "count": 92
+      },
+      "BR_014": {
+        "city": "Butwal",
+        "count": 81
+      },
+      "BR_034": {
+        "city": "Tulsipur",
+        "count": 92
+      },
+      "BR_001": {
+        "city": "Bhairahawa",
+        "count": 98
+      },
+      "BR_047": {
+        "city": "Tulsipur",
+        "count": 96
+      },
+      "BR_005": {
+        "city": "Bhairahawa",
+        "count": 83
+      },
+      "BR_037": {
+        "city": "Lalitpur",
+        "count": 85
+      },
+      "BR_033": {
+        "city": "Butwal",
+        "count": 102
+      },
+      "BR_011": {
+        "city": "Itahari",
+        "count": 94
+      },
+      "BR_023": {
+        "city": "Janakpur",
+        "count": 88
+      },
+      "BR_031": {
+        "city": "Butwal",
+        "count": 85
+      },
+      "BR_027": {
+        "city": "Lalitpur",
+        "count": 100
+      },
+      "BR_041": {
+        "city": "Janakpur",
+        "count": 86
+      },
+      "BR_040": {
+        "city": "Birgunj",
+        "count": 94
+      },
+      "BR_020": {
+        "city": "Tulsipur",
+        "count": 100
+      },
+      "BR_044": {
+        "city": "Tulsipur",
+        "count": 99
+      },
+      "BR_024": {
+        "city": "Bhairahawa",
+        "count": 89
+      },
+      "BR_000": {
+        "city": "Janakpur",
+        "count": 93
+      },
+      "BR_021": {
+        "city": "Pokhara",
+        "count": 88
+      },
+      "BR_035": {
+        "city": "Nepalgunj",
+        "count": 95
+      },
+      "BR_048": {
+        "city": "Nepalgunj",
+        "count": 79
+      },
+      "BR_015": {
+        "city": "Janakpur",
+        "count": 83
+      },
+      "BR_025": {
+        "city": "Dharan",
+        "count": 92
+      },
+      "BR_010": {
+        "city": "Biratnagar",
+        "count": 95
+      },
+      "BR_032": {
+        "city": "Bhairahawa",
+        "count": 4
+      },
+      "BR_013": {
+        "city": "Birgunj",
+        "count": 88
+      },
+      "BR_030": {
+        "city": "Ghorahi",
+        "count": 83
+      },
+      "BR_002": {
+        "city": "Birgunj",
+        "count": 9
+      },
+      "BR_012": {
+        "city": "Janakpur",
+        "count": 5
+      },
+      "BR_028": {
+        "city": "Dharan",
+        "count": 91
+      },
+      "BR_003": {
+        "city": "Nepalgunj",
+        "count": 89
+      },
+      "BR_029": {
+        "city": "Ghorahi",
+        "count": 19
+      },
+      "BR_039": {
+        "city": "Dharan",
+        "count": 6
+      },
+      "BR_038": {
+        "city": "Bhairahawa",
+        "count": 93
+      },
+      "BR_019": {
+        "city": "Birgunj",
+        "count": 7
+      },
+      "BR_018": {
+        "city": "Nepalgunj",
+        "count": 95
+      },
+      "BR_045": {
+        "city": "Biratnagar",
+        "count": 95
+      },
+      "BR_007": {
+        "city": "Pokhara",
+        "count": 86
+      },
+      "BR_042": {
+        "city": "Bharatpur",
+        "count": 11
+      },
+      "BR_043": {
+        "city": "Birgunj",
+        "count": 87
+      },
+      "BR_049": {
+        "city": "Lalitpur",
+        "count": 9
+      },
+      "BR_026": {
+        "city": "Bharatpur",
+        "count": 4
+      },
+      "BR_046": {
+        "city": "Pokhara",
+        "count": 8
+      },
+      "BR_006": {
+        "city": "Birgunj",
+        "count": 2
+      },
+      "BR_016": {
+        "city": "Hetauda",
+        "count": 8
+      },
+      "BR_009": {
+        "city": "Butwal",
+        "count": 2
+      },
+      "BR_022": {
+        "city": "Pokhara",
+        "count": 3
+      },
+      "BR_036": {
+        "city": "Kathmandu",
+        "count": 9
+      }
+    },
+    "frequency": 3290,
+    "weight": 0.05035277552457185
+  },
+  "RBBL": {
+    "branches": {
+      "BR_029": {
+        "city": "Hetauda",
+        "count": 108
+      },
+      "BR_024": {
+        "city": "Pokhara",
+        "count": 90
+      },
+      "BR_000": {
+        "city": "Nepalgunj",
+        "count": 97
+      },
+      "BR_027": {
+        "city": "Dharan",
+        "count": 87
+      },
+      "BR_043": {
+        "city": "Biratnagar",
+        "count": 87
+      },
+      "BR_019": {
+        "city": "Bhairahawa",
+        "count": 97
+      },
+      "BR_004": {
+        "city": "Bharatpur",
+        "count": 109
+      },
+      "BR_016": {
+        "city": "Pokhara",
+        "count": 87
+      },
+      "BR_044": {
+        "city": "Itahari",
+        "count": 102
+      },
+      "BR_046": {
+        "city": "Birgunj",
+        "count": 82
+      },
+      "BR_001": {
+        "city": "Birgunj",
+        "count": 87
+      },
+      "BR_031": {
+        "city": "Birgunj",
+        "count": 91
+      },
+      "BR_007": {
+        "city": "Janakpur",
+        "count": 86
+      },
+      "BR_026": {
+        "city": "Hetauda",
+        "count": 93
+      },
+      "BR_013": {
+        "city": "Bharatpur",
+        "count": 96
+      },
+      "BR_014": {
+        "city": "Biratnagar",
+        "count": 94
+      },
+      "BR_006": {
+        "city": "Hetauda",
+        "count": 104
+      },
+      "BR_020": {
+        "city": "Bhairahawa",
+        "count": 96
+      },
+      "BR_030": {
+        "city": "Birgunj",
+        "count": 103
+      },
+      "BR_025": {
+        "city": "Biratnagar",
+        "count": 7
+      },
+      "BR_023": {
+        "city": "Ghorahi",
+        "count": 79
+      },
+      "BR_036": {
+        "city": "Kathmandu",
+        "count": 95
+      },
+      "BR_040": {
+        "city": "Kathmandu",
+        "count": 77
+      },
+      "BR_017": {
+        "city": "Bharatpur",
+        "count": 73
+      },
+      "BR_047": {
+        "city": "Ghorahi",
+        "count": 88
+      },
+      "BR_011": {
+        "city": "Bhairahawa",
+        "count": 85
+      },
+      "BR_033": {
+        "city": "Hetauda",
+        "count": 83
+      },
+      "BR_003": {
+        "city": "Bharatpur",
+        "count": 108
+      },
+      "BR_038": {
+        "city": "Dharan",
+        "count": 6
+      },
+      "BR_041": {
+        "city": "Pokhara",
+        "count": 91
+      },
+      "BR_021": {
+        "city": "Tulsipur",
+        "count": 95
+      },
+      "BR_010": {
+        "city": "Ghorahi",
+        "count": 89
+      },
+      "BR_039": {
+        "city": "Lalitpur",
+        "count": 76
+      },
+      "BR_034": {
+        "city": "Butwal",
+        "count": 95
+      },
+      "BR_012": {
+        "city": "Lalitpur",
+        "count": 11
+      },
+      "BR_009": {
+        "city": "Nepalgunj",
+        "count": 77
+      },
+      "BR_049": {
+        "city": "Itahari",
+        "count": 104
+      },
+      "BR_037": {
+        "city": "Itahari",
+        "count": 82
+      },
+      "BR_035": {
+        "city": "Bharatpur",
+        "count": 4
+      },
+      "BR_005": {
+        "city": "Lalitpur",
+        "count": 5
+      },
+      "BR_018": {
+        "city": "Ghorahi",
+        "count": 12
+      },
+      "BR_048": {
+        "city": "Tulsipur",
+        "count": 8
+      },
+      "BR_008": {
+        "city": "Nepalgunj",
+        "count": 5
+      },
+      "BR_032": {
+        "city": "Bharatpur",
+        "count": 6
+      },
+      "BR_022": {
+        "city": "Hetauda",
+        "count": 9
+      },
+      "BR_042": {
+        "city": "Itahari",
+        "count": 7
+      },
+      "BR_028": {
+        "city": "Dharan",
+        "count": 5
+      },
+      "BR_015": {
+        "city": "Nepalgunj",
+        "count": 4
+      },
+      "BR_002": {
+        "city": "Janakpur",
+        "count": 5
+      },
+      "BR_045": {
+        "city": "Pokhara",
+        "count": 4
+      }
+    },
+    "frequency": 3291,
+    "weight": 0.05036808031956412
+  },
+  "SBL": {
+    "branches": {
+      "BR_044": {
+        "city": "Birgunj",
+        "count": 95
+      },
+      "BR_017": {
+        "city": "Janakpur",
+        "count": 95
+      },
+      "BR_023": {
+        "city": "Dharan",
+        "count": 111
+      },
+      "BR_016": {
+        "city": "Itahari",
+        "count": 97
+      },
+      "BR_040": {
+        "city": "Kathmandu",
+        "count": 106
+      },
+      "BR_013": {
+        "city": "Ghorahi",
+        "count": 99
+      },
+      "BR_037": {
+        "city": "Bharatpur",
+        "count": 88
+      },
+      "BR_043": {
+        "city": "Itahari",
+        "count": 96
+      },
+      "BR_011": {
+        "city": "Lalitpur",
+        "count": 75
+      },
+      "BR_045": {
+        "city": "Biratnagar",
+        "count": 7
+      },
+      "BR_047": {
+        "city": "Bharatpur",
+        "count": 90
+      },
+      "BR_024": {
+        "city": "Dharan",
+        "count": 87
+      },
+      "BR_030": {
+        "city": "Nepalgunj",
+        "count": 93
+      },
+      "BR_008": {
+        "city": "Itahari",
+        "count": 92
+      },
+      "BR_046": {
+        "city": "Ghorahi",
+        "count": 84
+      },
+      "BR_004": {
+        "city": "Janakpur",
+        "count": 94
+      },
+      "BR_038": {
+        "city": "Lalitpur",
+        "count": 82
+      },
+      "BR_027": {
+        "city": "Ghorahi",
+        "count": 66
+      },
+      "BR_000": {
+        "city": "Hetauda",
+        "count": 80
+      },
+      "BR_034": {
+        "city": "Butwal",
+        "count": 92
+      },
+      "BR_031": {
+        "city": "Tulsipur",
+        "count": 96
+      },
+      "BR_006": {
+        "city": "Dharan",
+        "count": 95
+      },
+      "BR_028": {
+        "city": "Tulsipur",
+        "count": 91
+      },
+      "BR_020": {
+        "city": "Hetauda",
+        "count": 64
+      },
+      "BR_033": {
+        "city": "Biratnagar",
+        "count": 79
+      },
+      "BR_015": {
+        "city": "Bharatpur",
+        "count": 9
+      },
+      "BR_010": {
+        "city": "Biratnagar",
+        "count": 58
+      },
+      "BR_036": {
+        "city": "Hetauda",
+        "count": 98
+      },
+      "BR_001": {
+        "city": "Butwal",
+        "count": 82
+      },
+      "BR_026": {
+        "city": "Bhairahawa",
+        "count": 101
+      },
+      "BR_041": {
+        "city": "Bhairahawa",
+        "count": 113
+      },
+      "BR_007": {
+        "city": "Kathmandu",
+        "count": 90
+      },
+      "BR_014": {
+        "city": "Janakpur",
+        "count": 94
+      },
+      "BR_003": {
+        "city": "Nepalgunj",
+        "count": 98
+      },
+      "BR_021": {
+        "city": "Hetauda",
+        "count": 85
+      },
+      "BR_042": {
+        "city": "Itahari",
+        "count": 15
+      },
+      "BR_048": {
+        "city": "Kathmandu",
+        "count": 114
+      },
+      "BR_019": {
+        "city": "Pokhara",
+        "count": 8
+      },
+      "BR_049": {
+        "city": "Janakpur",
+        "count": 6
+      },
+      "BR_018": {
+        "city": "Tulsipur",
+        "count": 76
+      },
+      "BR_025": {
+        "city": "Nepalgunj",
+        "count": 9
+      },
+      "BR_005": {
+        "city": "Dharan",
+        "count": 11
+      },
+      "BR_009": {
+        "city": "Lalitpur",
+        "count": 8
+      },
+      "BR_032": {
+        "city": "Hetauda",
+        "count": 11
+      },
+      "BR_002": {
+        "city": "Kathmandu",
+        "count": 6
+      },
+      "BR_012": {
+        "city": "Itahari",
+        "count": 7
+      },
+      "BR_035": {
+        "city": "Birgunj",
+        "count": 5
+      },
+      "BR_022": {
+        "city": "Butwal",
+        "count": 4
+      },
+      "BR_029": {
+        "city": "Janakpur",
+        "count": 2
+      }
+    },
+    "frequency": 3264,
+    "weight": 0.0499548508547728
+  },
+  "PRIME": {
+    "branches": {
+      "BR_037": {
+        "city": "Hetauda",
+        "count": 101
+      },
+      "BR_021": {
+        "city": "Biratnagar",
+        "count": 99
+      },
+      "BR_032": {
+        "city": "Bharatpur",
+        "count": 96
+      },
+      "BR_011": {
+        "city": "Tulsipur",
+        "count": 93
+      },
+      "BR_015": {
+        "city": "Birgunj",
+        "count": 89
+      },
+      "BR_041": {
+        "city": "Lalitpur",
+        "count": 108
+      },
+      "BR_014": {
+        "city": "Birgunj",
+        "count": 92
+      },
+      "BR_007": {
+        "city": "Tulsipur",
+        "count": 82
+      },
+      "BR_038": {
+        "city": "Bharatpur",
+        "count": 89
+      },
+      "BR_005": {
+        "city": "Itahari",
+        "count": 94
+      },
+      "BR_001": {
+        "city": "Bhairahawa",
+        "count": 77
+      },
+      "BR_029": {
+        "city": "Bharatpur",
+        "count": 86
+      },
+      "BR_008": {
+        "city": "Dharan",
+        "count": 96
+      },
+      "BR_019": {
+        "city": "Janakpur",
+        "count": 77
+      },
+      "BR_039": {
+        "city": "Pokhara",
+        "count": 91
+      },
+      "BR_031": {
+        "city": "Itahari",
+        "count": 79
+      },
+      "BR_035": {
+        "city": "Dharan",
+        "count": 77
+      },
+      "BR_002": {
+        "city": "Butwal",
+        "count": 81
+      },
+      "BR_034": {
+        "city": "Butwal",
+        "count": 74
+      },
+      "BR_004": {
+        "city": "Ghorahi",
+        "count": 108
+      },
+      "BR_024": {
+        "city": "Tulsipur",
+        "count": 82
+      },
+      "BR_028": {
+        "city": "Butwal",
+        "count": 104
+      },
+      "BR_017": {
+        "city": "Tulsipur",
+        "count": 87
+      },
+      "BR_018": {
+        "city": "Dharan",
+        "count": 85
+      },
+      "BR_045": {
+        "city": "Hetauda",
+        "count": 91
+      },
+      "BR_012": {
+        "city": "Hetauda",
+        "count": 100
+      },
+      "BR_027": {
+        "city": "Itahari",
+        "count": 83
+      },
+      "BR_048": {
+        "city": "Bhairahawa",
+        "count": 98
+      },
+      "BR_009": {
+        "city": "Birgunj",
+        "count": 82
+      },
+      "BR_022": {
+        "city": "Itahari",
+        "count": 79
+      },
+      "BR_047": {
+        "city": "Biratnagar",
+        "count": 88
+      },
+      "BR_013": {
+        "city": "Hetauda",
+        "count": 8
+      },
+      "BR_043": {
+        "city": "Dharan",
+        "count": 8
+      },
+      "BR_049": {
+        "city": "Pokhara",
+        "count": 92
+      },
+      "BR_042": {
+        "city": "Bharatpur",
+        "count": 87
+      },
+      "BR_025": {
+        "city": "Butwal",
+        "count": 86
+      },
+      "BR_044": {
+        "city": "Dharan",
+        "count": 103
+      },
+      "BR_003": {
+        "city": "Bhairahawa",
+        "count": 8
+      },
+      "BR_026": {
+        "city": "Bhairahawa",
+        "count": 4
+      },
+      "BR_036": {
+        "city": "Ghorahi",
+        "count": 9
+      },
+      "BR_030": {
+        "city": "Janakpur",
+        "count": 15
+      },
+      "BR_020": {
+        "city": "Lalitpur",
+        "count": 6
+      },
+      "BR_016": {
+        "city": "Bharatpur",
+        "count": 8
+      },
+      "BR_006": {
+        "city": "Nepalgunj",
+        "count": 5
+      },
+      "BR_023": {
+        "city": "Ghorahi",
+        "count": 8
+      },
+      "BR_046": {
+        "city": "Hetauda",
+        "count": 6
+      },
+      "BR_040": {
+        "city": "Itahari",
+        "count": 5
+      },
+      "BR_000": {
+        "city": "Bharatpur",
+        "count": 6
+      },
+      "BR_033": {
+        "city": "Ghorahi",
+        "count": 4
+      },
+      "BR_010": {
+        "city": "Nepalgunj",
+        "count": 2
+      }
+    },
+    "frequency": 3238,
+    "weight": 0.04955692618497375
+  },
+  "ADBL": {
+    "branches": {
+      "BR_048": {
+        "city": "Janakpur",
+        "count": 81
+      },
+      "BR_005": {
+        "city": "Kathmandu",
+        "count": 89
+      },
+      "BR_000": {
+        "city": "Lalitpur",
+        "count": 80
+      },
+      "BR_040": {
+        "city": "Nepalgunj",
+        "count": 100
+      },
+      "BR_018": {
+        "city": "Ghorahi",
+        "count": 97
+      },
+      "BR_044": {
+        "city": "Nepalgunj",
+        "count": 106
+      },
+      "BR_047": {
+        "city": "Biratnagar",
+        "count": 82
+      },
+      "BR_028": {
+        "city": "Birgunj",
+        "count": 105
+      },
+      "BR_030": {
+        "city": "Lalitpur",
+        "count": 94
+      },
+      "BR_043": {
+        "city": "Pokhara",
+        "count": 103
+      },
+      "BR_045": {
+        "city": "Bhairahawa",
+        "count": 94
+      },
+      "BR_001": {
+        "city": "Lalitpur",
+        "count": 82
+      },
+      "BR_010": {
+        "city": "Itahari",
+        "count": 93
+      },
+      "BR_013": {
+        "city": "Janakpur",
+        "count": 86
+      },
+      "BR_015": {
+        "city": "Ghorahi",
+        "count": 97
+      },
+      "BR_023": {
+        "city": "Kathmandu",
+        "count": 85
+      },
+      "BR_021": {
+        "city": "Butwal",
+        "count": 87
+      },
+      "BR_008": {
+        "city": "Kathmandu",
+        "count": 87
+      },
+      "BR_002": {
+        "city": "Biratnagar",
+        "count": 6
+      },
+      "BR_034": {
+        "city": "Birgunj",
+        "count": 100
+      },
+      "BR_011": {
+        "city": "Dharan",
+        "count": 77
+      },
+      "BR_004": {
+        "city": "Itahari",
+        "count": 89
+      },
+      "BR_031": {
+        "city": "Bhairahawa",
+        "count": 93
+      },
+      "BR_027": {
+        "city": "Bhairahawa",
+        "count": 84
+      },
+      "BR_038": {
+        "city": "Butwal",
+        "count": 92
+      },
+      "BR_009": {
+        "city": "Birgunj",
+        "count": 9
+      },
+      "BR_037": {
+        "city": "Itahari",
+        "count": 87
+      },
+      "BR_017": {
+        "city": "Itahari",
+        "count": 96
+      },
+      "BR_020": {
+        "city": "Janakpur",
+        "count": 106
+      },
+      "BR_035": {
+        "city": "Butwal",
+        "count": 95
+      },
+      "BR_007": {
+        "city": "Butwal",
+        "count": 95
+      },
+      "BR_003": {
+        "city": "Bhairahawa",
+        "count": 105
+      },
+      "BR_033": {
+        "city": "Kathmandu",
+        "count": 99
+      },
+      "BR_012": {
+        "city": "Itahari",
+        "count": 7
+      },
+      "BR_036": {
+        "city": "Dharan",
+        "count": 4
+      },
+      "BR_024": {
+        "city": "Dharan",
+        "count": 81
+      },
+      "BR_025": {
+        "city": "Bhairahawa",
+        "count": 91
+      },
+      "BR_039": {
+        "city": "Hetauda",
+        "count": 7
+      },
+      "BR_041": {
+        "city": "Kathmandu",
+        "count": 80
+      },
+      "BR_014": {
+        "city": "Butwal",
+        "count": 83
+      },
+      "BR_032": {
+        "city": "Bhairahawa",
+        "count": 12
+      },
+      "BR_019": {
+        "city": "Dharan",
+        "count": 8
+      },
+      "BR_049": {
+        "city": "Hetauda",
+        "count": 9
+      },
+      "BR_046": {
+        "city": "Bharatpur",
+        "count": 5
+      },
+      "BR_026": {
+        "city": "Dharan",
+        "count": 4
+      },
+      "BR_006": {
+        "city": "Nepalgunj",
+        "count": 8
+      },
+      "BR_022": {
+        "city": "Butwal",
+        "count": 3
+      },
+      "BR_029": {
+        "city": "Bhairahawa",
+        "count": 3
+      },
+      "BR_042": {
+        "city": "Bhairahawa",
+        "count": 3
+      },
+      "BR_016": {
+        "city": "Birgunj",
+        "count": 1
+      }
+    },
+    "frequency": 3290,
+    "weight": 0.05035277552457185
+  },
+  "BOKL": {
+    "branches": {
+      "BR_023": {
+        "city": "Bhairahawa",
+        "count": 94
+      },
+      "BR_029": {
+        "city": "Lalitpur",
+        "count": 81
+      },
+      "BR_014": {
+        "city": "Biratnagar",
+        "count": 6
+      },
+      "BR_021": {
+        "city": "Pokhara",
+        "count": 101
+      },
+      "BR_013": {
+        "city": "Ghorahi",
+        "count": 87
+      },
+      "BR_001": {
+        "city": "Birgunj",
+        "count": 93
+      },
+      "BR_006": {
+        "city": "Bhairahawa",
+        "count": 95
+      },
+      "BR_045": {
+        "city": "Ghorahi",
+        "count": 109
+      },
+      "BR_002": {
+        "city": "Nepalgunj",
+        "count": 106
+      },
+      "BR_011": {
+        "city": "Pokhara",
+        "count": 95
+      },
+      "BR_043": {
+        "city": "Tulsipur",
+        "count": 102
+      },
+      "BR_019": {
+        "city": "Itahari",
+        "count": 90
+      },
+      "BR_026": {
+        "city": "Bhairahawa",
+        "count": 84
+      },
+      "BR_034": {
+        "city": "Itahari",
+        "count": 14
+      },
+      "BR_005": {
+        "city": "Birgunj",
+        "count": 75
+      },
+      "BR_046": {
+        "city": "Biratnagar",
+        "count": 91
+      },
+      "BR_015": {
+        "city": "Lalitpur",
+        "count": 81
+      },
+      "BR_048": {
+        "city": "Butwal",
+        "count": 89
+      },
+      "BR_038": {
+        "city": "Itahari",
+        "count": 106
+      },
+      "BR_035": {
+        "city": "Ghorahi",
+        "count": 97
+      },
+      "BR_020": {
+        "city": "Ghorahi",
+        "count": 5
+      },
+      "BR_018": {
+        "city": "Tulsipur",
+        "count": 91
+      },
+      "BR_008": {
+        "city": "Dharan",
+        "count": 98
+      },
+      "BR_042": {
+        "city": "Biratnagar",
+        "count": 87
+      },
+      "BR_009": {
+        "city": "Birgunj",
+        "count": 73
+      },
+      "BR_039": {
+        "city": "Kathmandu",
+        "count": 97
+      },
+      "BR_049": {
+        "city": "Ghorahi",
+        "count": 92
+      },
+      "BR_041": {
+        "city": "Nepalgunj",
+        "count": 76
+      },
+      "BR_003": {
+        "city": "Kathmandu",
+        "count": 101
+      },
+      "BR_016": {
+        "city": "Butwal",
+        "count": 94
+      },
+      "BR_017": {
+        "city": "Nepalgunj",
+        "count": 5
+      },
+      "BR_022": {
+        "city": "Lalitpur",
+        "count": 88
+      },
+      "BR_028": {
+        "city": "Butwal",
+        "count": 80
+      },
+      "BR_032": {
+        "city": "Bhairahawa",
+        "count": 104
+      },
+      "BR_025": {
+        "city": "Biratnagar",
+        "count": 83
+      },
+      "BR_031": {
+        "city": "Janakpur",
+        "count": 98
+      },
+      "BR_036": {
+        "city": "Biratnagar",
+        "count": 86
+      },
+      "BR_012": {
+        "city": "Ghorahi",
+        "count": 78
+      },
+      "BR_007": {
+        "city": "Ghorahi",
+        "count": 7
+      },
+      "BR_033": {
+        "city": "Nepalgunj",
+        "count": 77
+      },
+      "BR_030": {
+        "city": "Nepalgunj",
+        "count": 9
+      },
+      "BR_027": {
+        "city": "Butwal",
+        "count": 10
+      },
+      "BR_024": {
+        "city": "Kathmandu",
+        "count": 6
+      },
+      "BR_010": {
+        "city": "Kathmandu",
+        "count": 8
+      },
+      "BR_047": {
+        "city": "Tulsipur",
+        "count": 8
+      },
+      "BR_037": {
+        "city": "Dharan",
+        "count": 5
+      },
+      "BR_044": {
+        "city": "Lalitpur",
+        "count": 3
+      },
+      "BR_004": {
+        "city": "Itahari",
+        "count": 6
+      },
+      "BR_040": {
+        "city": "Pokhara",
+        "count": 7
+      },
+      "BR_000": {
+        "city": "Bharatpur",
+        "count": 2
+      }
+    },
+    "frequency": 3280,
+    "weight": 0.05019972757464914
+  },
+  "LAXMI": {
+    "branches": {
+      "BR_049": {
+        "city": "Nepalgunj",
+        "count": 92
+      },
+      "BR_047": {
+        "city": "Bharatpur",
+        "count": 106
+      },
+      "BR_002": {
+        "city": "Hetauda",
+        "count": 86
+      },
+      "BR_026": {
+        "city": "Biratnagar",
+        "count": 88
+      },
+      "BR_019": {
+        "city": "Itahari",
+        "count": 103
+      },
+      "BR_006": {
+        "city": "Birgunj",
+        "count": 89
+      },
+      "BR_044": {
+        "city": "Tulsipur",
+        "count": 79
+      },
+      "BR_016": {
+        "city": "Bhairahawa",
+        "count": 96
+      },
+      "BR_032": {
+        "city": "Nepalgunj",
+        "count": 89
+      },
+      "BR_027": {
+        "city": "Itahari",
+        "count": 91
+      },
+      "BR_003": {
+        "city": "Biratnagar",
+        "count": 81
+      },
+      "BR_004": {
+        "city": "Nepalgunj",
+        "count": 81
+      },
+      "BR_013": {
+        "city": "Itahari",
+        "count": 88
+      },
+      "BR_036": {
+        "city": "Tulsipur",
+        "count": 75
+      },
+      "BR_009": {
+        "city": "Pokhara",
+        "count": 95
+      },
+      "BR_039": {
+        "city": "Birgunj",
+        "count": 85
+      },
+      "BR_043": {
+        "city": "Nepalgunj",
+        "count": 100
+      },
+      "BR_030": {
+        "city": "Ghorahi",
+        "count": 111
+      },
+      "BR_014": {
+        "city": "Nepalgunj",
+        "count": 77
+      },
+      "BR_007": {
+        "city": "Dharan",
+        "count": 104
+      },
+      "BR_012": {
+        "city": "Birgunj",
+        "count": 96
+      },
+      "BR_029": {
+        "city": "Pokhara",
+        "count": 72
+      },
+      "BR_020": {
+        "city": "Bharatpur",
+        "count": 97
+      },
+      "BR_042": {
+        "city": "Nepalgunj",
+        "count": 99
+      },
+      "BR_033": {
+        "city": "Janakpur",
+        "count": 86
+      },
+      "BR_037": {
+        "city": "Hetauda",
+        "count": 66
+      },
+      "BR_040": {
+        "city": "Dharan",
+        "count": 81
+      },
+      "BR_023": {
+        "city": "Janakpur",
+        "count": 90
+      },
+      "BR_000": {
+        "city": "Hetauda",
+        "count": 98
+      },
+      "BR_017": {
+        "city": "Dharan",
+        "count": 107
+      },
+      "BR_022": {
+        "city": "Biratnagar",
+        "count": 86
+      },
+      "BR_046": {
+        "city": "Nepalgunj",
+        "count": 100
+      },
+      "BR_024": {
+        "city": "Kathmandu",
+        "count": 94
+      },
+      "BR_010": {
+        "city": "Janakpur",
+        "count": 86
+      },
+      "BR_034": {
+        "city": "Pokhara",
+        "count": 81
+      },
+      "BR_038": {
+        "city": "Lalitpur",
+        "count": 8
+      },
+      "BR_021": {
+        "city": "Butwal",
+        "count": 6
+      },
+      "BR_011": {
+        "city": "Janakpur",
+        "count": 6
+      },
+      "BR_005": {
+        "city": "Tulsipur",
+        "count": 9
+      },
+      "BR_041": {
+        "city": "Birgunj",
+        "count": 9
+      },
+      "BR_048": {
+        "city": "Birgunj",
+        "count": 4
+      },
+      "BR_028": {
+        "city": "Bhairahawa",
+        "count": 7
+      },
+      "BR_031": {
+        "city": "Nepalgunj",
+        "count": 8
+      },
+      "BR_001": {
+        "city": "Nepalgunj",
+        "count": 4
+      },
+      "BR_025": {
+        "city": "Birgunj",
+        "count": 9
+      },
+      "BR_015": {
+        "city": "Lalitpur",
+        "count": 1
+      },
+      "BR_008": {
+        "city": "Ghorahi",
+        "count": 5
+      },
+      "BR_045": {
+        "city": "Nepalgunj",
+        "count": 4
+      },
+      "BR_018": {
+        "city": "Kathmandu",
+        "count": 4
+      },
+      "BR_035": {
+        "city": "Dharan",
+        "count": 5
+      }
+    },
+    "frequency": 3244,
+    "weight": 0.04964875495492738
+  },
+  "NABIL": {
+    "branches": {
+      "BR_045": {
+        "city": "Biratnagar",
+        "count": 82
+      },
+      "BR_035": {
+        "city": "Nepalgunj",
+        "count": 109
+      },
+      "BR_004": {
+        "city": "Itahari",
+        "count": 99
+      },
+      "BR_037": {
+        "city": "Biratnagar",
+        "count": 104
+      },
+      "BR_040": {
+        "city": "Kathmandu",
+        "count": 78
+      },
+      "BR_024": {
+        "city": "Biratnagar",
+        "count": 97
+      },
+      "BR_018": {
+        "city": "Nepalgunj",
+        "count": 110
+      },
+      "BR_021": {
+        "city": "Nepalgunj",
+        "count": 100
+      },
+      "BR_034": {
+        "city": "Pokhara",
+        "count": 107
+      },
+      "BR_008": {
+        "city": "Janakpur",
+        "count": 99
+      },
+      "BR_001": {
+        "city": "Biratnagar",
+        "count": 99
+      },
+      "BR_012": {
+        "city": "Nepalgunj",
+        "count": 94
+      },
+      "BR_041": {
+        "city": "Birgunj",
+        "count": 89
+      },
+      "BR_010": {
+        "city": "Ghorahi",
+        "count": 66
+      },
+      "BR_032": {
+        "city": "Itahari",
+        "count": 91
+      },
+      "BR_000": {
+        "city": "Janakpur",
+        "count": 112
+      },
+      "BR_005": {
+        "city": "Itahari",
+        "count": 89
+      },
+      "BR_031": {
+        "city": "Tulsipur",
+        "count": 107
+      },
+      "BR_007": {
+        "city": "Bharatpur",
+        "count": 80
+      },
+      "BR_044": {
+        "city": "Bhairahawa",
+        "count": 93
+      },
+      "BR_015": {
+        "city": "Ghorahi",
+        "count": 81
+      },
+      "BR_049": {
+        "city": "Ghorahi",
+        "count": 6
+      },
+      "BR_038": {
+        "city": "Janakpur",
+        "count": 96
+      },
+      "BR_017": {
+        "city": "Bharatpur",
+        "count": 82
+      },
+      "BR_048": {
+        "city": "Pokhara",
+        "count": 81
+      },
+      "BR_025": {
+        "city": "Nepalgunj",
+        "count": 74
+      },
+      "BR_020": {
+        "city": "Bhairahawa",
+        "count": 107
+      },
+      "BR_002": {
+        "city": "Kathmandu",
+        "count": 74
+      },
+      "BR_042": {
+        "city": "Kathmandu",
+        "count": 93
+      },
+      "BR_014": {
+        "city": "Itahari",
+        "count": 91
+      },
+      "BR_028": {
+        "city": "Hetauda",
+        "count": 104
+      },
+      "BR_011": {
+        "city": "Janakpur",
+        "count": 102
+      },
+      "BR_047": {
+        "city": "Tulsipur",
+        "count": 89
+      },
+      "BR_003": {
+        "city": "Janakpur",
+        "count": 6
+      },
+      "BR_022": {
+        "city": "Itahari",
+        "count": 87
+      },
+      "BR_023": {
+        "city": "Dharan",
+        "count": 10
+      },
+      "BR_027": {
+        "city": "Kathmandu",
+        "count": 84
+      },
+      "BR_030": {
+        "city": "Biratnagar",
+        "count": 99
+      },
+      "BR_039": {
+        "city": "Itahari",
+        "count": 9
+      },
+      "BR_019": {
+        "city": "Bhairahawa",
+        "count": 5
+      },
+      "BR_026": {
+        "city": "Lalitpur",
+        "count": 9
+      },
+      "BR_043": {
+        "city": "Bharatpur",
+        "count": 6
+      },
+      "BR_033": {
+        "city": "Birgunj",
+        "count": 9
+      },
+      "BR_006": {
+        "city": "Kathmandu",
+        "count": 4
+      },
+      "BR_029": {
+        "city": "Dharan",
+        "count": 6
+      },
+      "BR_016": {
+        "city": "Lalitpur",
+        "count": 8
+      },
+      "BR_013": {
+        "city": "Ghorahi",
+        "count": 4
+      },
+      "BR_036": {
+        "city": "Ghorahi",
+        "count": 7
+      },
+      "BR_009": {
+        "city": "Dharan",
+        "count": 7
+      },
+      "BR_046": {
+        "city": "Bhairahawa",
+        "count": 3
+      }
+    },
+    "frequency": 3348,
+    "weight": 0.05124045363412357
+  }
+}
