@@ -76,21 +76,21 @@ The canonical schema is the **single source of truth** for all data flowing betw
 
 ### 4.2 `accounts` Table (Derived/Generated)
 
-| Column | Type | Description |
-|---|---|---|
-| `account_id` | string | Primary key |
-| `account_type` | categorical | savings / current / salary / fixed_deposit |
-| `account_open_date` | date | Account opening date |
-| `account_age_days` | int | Days since opening (at reference date) |
-| `kyc_verified` | binary | KYC completion status |
-| `kyc_risk_grade` | categorical | low / medium / high |
-| `is_pep` | binary | Politically Exposed Person flag |
-| `is_sanctioned` | binary | Sanctions list match |
-| `average_monthly_volume` | float | Average monthly transaction volume |
-| `average_monthly_count` | int | Average monthly transaction count |
-| `country` | string | Account holder's country |
-| `city` | string | Account holder's city (Nepal: major cities) |
-| `is_mule` | binary | Whether this is a generated mule account |
+| Column                   | Type        | Description                                 |
+| ------------------------ | ----------- | ------------------------------------------- |
+| `account_id`             | string      | Primary key                                 |
+| `account_type`           | categorical | savings / current / salary / fixed_deposit  |
+| `account_open_date`      | date        | Account opening date                        |
+| `account_age_days`       | int         | Days since opening (at reference date)      |
+| `kyc_verified`           | binary      | KYC completion status                       |
+| `kyc_risk_grade`         | categorical | low / medium / high                         |
+| `is_pep`                 | binary      | Politically Exposed Person flag             |
+| `is_sanctioned`          | binary      | Sanctions list match                        |
+| `average_monthly_volume` | float       | Average monthly transaction volume          |
+| `average_monthly_count`  | int         | Average monthly transaction count           |
+| `country`                | string      | Account holder's country                    |
+| `city`                   | string      | Account holder's city (Nepal: major cities) |
+| `is_mule`                | binary      | Whether this is a generated mule account    |
 
 ### 4.3 `alert_scores` Table (Agent Output)
 
