@@ -1,123 +1,260 @@
-import os
-import pandas as pd
-import logging
-from .base_generator import BaseGenerator
+"""
+src/generation/synthesizers/smote_generator.py
+-----------------------------------------------
+SMOTE-based synthetic data generator.
 
-try:
-    from synthyverse.generators.smote_generator import SMOTEGenerator as SynthyverseSMOTE
-    SYNTHYVERSE_AVAILABLE = True
-except ImportError:
-    SYNTHYVERSE_AVAILABLE = False
+Wraps imbalanced-learn's SMOTE / SMOTENC to generate an arbitrary number of
+synthetic tabular rows by learning the local neighbourhood structure of the
+seed data and interpolating new samples from it.
+
+Strategy
+--------
+1. Label-encode all categorical columns.
+2. Build a synthetic binary target so SMOTE has something to oversample:
+   rows above the median amount (or any continuous column) → class 1,
+   rest → class 0.  This lets SMOTE explore the full feature space.
+3. Ask SMOTE to produce exactly ``num_rows`` new minority-class samples.
+4. Decode categoricals back to their original string values.
+5. Return a DataFrame with the same columns and dtypes as the seed data.
+"""
+
+from __future__ import annotations
+
+import os
+import pickle
+import warnings
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+from .base_generator import BaseGenerator
 
 
 class SMOTEGenerator(BaseGenerator):
+    """Generate synthetic tabular rows using SMOTE interpolation.
+
+    Parameters
+    ----------
+    config : dict, optional
+        - k_neighbors : int, default 5
+        - random_state : int, default None
     """
-    SMOTE generator wrapper for tabular fraud data.
 
-    Synthetic Minority Over-sampling Technique (SMOTE) creates synthetic samples
-    via interpolation in feature space. 
-
-    This wrapper uses the `synthyverse` library's SMOTE implementation.
-    Install with: `pip install synthyverse`
-    """
-
-    def __init__(
-        self,
-        config: dict | None = None,
-        k_neighbors: int = 5,
-        n_jobs: int = -1,
-        random_state: int = 42,
-    ):
+    def __init__(self, config: dict | None = None) -> None:
         self.config = config or {}
-        if not SYNTHYVERSE_AVAILABLE:
-            raise ImportError(
-                "synthyverse is required to run SMOTE. Install with: pip install synthyverse"
-            )
-        self.k_neighbors = self.config.get("k_neighbors", k_neighbors)
-        self.n_jobs      = self.config.get("n_jobs",      n_jobs)
-        self.random_state= self.config.get("random_state",random_state)
-        self.target_column = self.config.get("target_column", "is_suspicious_tx")
+        self.k_neighbors: int = int(self.config.get("k_neighbors", 5))
+        self.random_state = self.config.get("random_state", None)
 
-        self.model = None
-        self.is_fitted = False
-        self._columns: list[str] | None = None
+        # State populated by fit()
+        self._original_columns: list[str] = []
+        self._cat_indices: list[int] = []           # positional indices of categorical cols
+        self._cat_cols: list[str] = []              # names of categorical cols
+        self._label_encoders: dict[str, LabelEncoder] = {}
+        self._X_encoded: pd.DataFrame | None = None  # numeric-only encoded seed data
+        self._fitted: bool = False
+
+    # ------------------------------------------------------------------
+    # BaseGenerator interface
+    # ------------------------------------------------------------------
 
     def fit(self, data: pd.DataFrame) -> None:
-        """Fit SMOTE on *data*."""
-        self._columns = data.columns.tolist()
+        """Learn the feature space from seed data.
 
-        logging.info("SMOTE fit — %d rows, %d cols", len(data), len(self._columns))
+        Parameters
+        ----------
+        data : pd.DataFrame
+            Seed data (original accounts or transactions).
+        """
+        df = data.copy().reset_index(drop=True)
 
-        # Detect discrete features automatically as Synthyverse requires them
-        discrete_features = []
-        for col in data.columns:
-            if data[col].dtype == "object" or data[col].dtype.name == "category" or data[col].nunique() <= 20:
-                discrete_features.append(col)
+        # Drop columns that are pure identifiers or all-null — they add no signal
+        df = self._drop_useless_columns(df)
 
-        # Handle case where the target column is not in the dataframe
-        if self.target_column not in data.columns:
-            fallback_target = discrete_features[0] if discrete_features else data.columns[-1]
-            logging.warning("Target column '%s' not found. Using '%s' instead.", self.target_column, fallback_target)
-            self.target_column = fallback_target
+        self._original_columns = df.columns.tolist()
 
-        self.model = SynthyverseSMOTE(
-            target_column=self.target_column,
-            k_neighbors=self.k_neighbors,
-            n_jobs=self.n_jobs,
-            random_state=self.random_state
-        )
-        
-        # SMOTEGenerator in synthyverse doesn't actually fit a model to generate randomly,
-        # it just stores the data and will run SMOTE algorithm in `generate`.
-        self.model.fit(data, discrete_features)
-        self.is_fitted = True
+        # Detect categorical columns
+        self._cat_cols = []
+        self._cat_indices = []
+        for i, col in enumerate(df.columns):
+            if df[col].dtype == "object" or df[col].dtype.name in ("category", "string"):
+                self._cat_cols.append(col)
+                self._cat_indices.append(i)
+            elif df[col].dtype in (bool,) or str(df[col].dtype).startswith("bool"):
+                self._cat_cols.append(col)
+                self._cat_indices.append(i)
+
+        # Label-encode categoricals; fill nulls first
+        encoded = df.copy()
+        for col in self._cat_cols:
+            encoded[col] = encoded[col].fillna("__MISSING__").astype(str)
+            le = LabelEncoder()
+            encoded[col] = le.fit_transform(encoded[col])
+            self._label_encoders[col] = le
+
+        # Fill remaining nulls in numeric columns with median
+        for col in encoded.columns:
+            if col not in self._cat_cols:
+                encoded[col] = pd.to_numeric(encoded[col], errors="coerce")
+                encoded[col] = encoded[col].fillna(encoded[col].median())
+
+        self._X_encoded = encoded.astype(float)
+        self._fitted = True
 
     def generate(self, num_rows: int) -> pd.DataFrame:
-        if not self.is_fitted or self.model is None:
-            raise ValueError("Model not fitted. Call fit() first.")
-        
-        logging.info("Generating %d rows using SMOTE...", num_rows)
-        synthetic = self.model.generate(num_rows)
-        
-        # Ensure column order matches original
-        if self._columns is not None:
-            for col in self._columns:
-                if col not in synthetic.columns:
-                    synthetic[col] = 0
-            synthetic = synthetic[self._columns]
-            
-        return synthetic
+        """Generate ``num_rows`` synthetic rows via SMOTE interpolation.
+
+        Parameters
+        ----------
+        num_rows : int
+            Exact number of synthetic rows to return.
+
+        Returns
+        -------
+        pd.DataFrame with the same columns as the seed data.
+        """
+        if not self._fitted or self._X_encoded is None:
+            raise RuntimeError("Call fit() before generate().")
+
+        try:
+            from imblearn.over_sampling import SMOTE, SMOTENC
+        except ImportError as exc:
+            raise ImportError(
+                "imbalanced-learn is required: pip install imbalanced-learn==0.12.0"
+            ) from exc
+
+        rng = np.random.default_rng(self.random_state)
+        X = self._X_encoded.values
+        n_seed = len(X)
+
+        # Build a simple binary target so SMOTE has a minority class to oversample.
+        # Use median split on the first numeric column that has variance.
+        y = self._make_binary_target(X, rng)
+
+        minority_mask = y == 1
+        n_minority = minority_mask.sum()
+        n_majority = (~minority_mask).sum()
+
+        # We want exactly num_rows NEW samples from the minority class.
+        # Tell SMOTE to produce n_minority + num_rows minority samples.
+        target_minority = int(n_minority) + num_rows
+
+        k = min(self.k_neighbors, int(n_minority) - 1)
+        if k < 1:
+            k = 1
+
+        sampling_strategy = {1: target_minority}
+
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            if self._cat_indices:
+                smote = SMOTENC(
+                    categorical_features=self._cat_indices,
+                    k_neighbors=k,
+                    sampling_strategy=sampling_strategy,
+                    random_state=self.random_state,
+                )
+            else:
+                smote = SMOTE(
+                    k_neighbors=k,
+                    sampling_strategy=sampling_strategy,
+                    random_state=self.random_state,
+                )
+            X_res, y_res = smote.fit_resample(X, y)
+
+        # The new rows are at the end of X_res (after the original n_seed rows).
+        # Take exactly num_rows from the newly generated minority samples.
+        new_rows = X_res[n_seed:]          # all newly created rows
+        if len(new_rows) == 0:
+            # Fallback: bootstrap from seed if SMOTE produced nothing new
+            idx = rng.integers(0, n_seed, size=num_rows)
+            new_rows = X[idx]
+        elif len(new_rows) < num_rows:
+            # Pad by bootstrapping from what SMOTE gave us
+            pad_idx = rng.integers(0, len(new_rows), size=num_rows - len(new_rows))
+            new_rows = np.vstack([new_rows, new_rows[pad_idx]])
+        else:
+            new_rows = new_rows[:num_rows]
+
+        synthetic = pd.DataFrame(new_rows, columns=self._original_columns)
+
+        # Decode categorical columns back to original labels
+        for col in self._cat_cols:
+            le = self._label_encoders[col]
+            codes = synthetic[col].round().clip(0, len(le.classes_) - 1).astype(int)
+            decoded = le.inverse_transform(codes)
+            # Restore __MISSING__ → NaN
+            synthetic[col] = [v if v != "__MISSING__" else np.nan for v in decoded]
+
+        # Restore original dtypes as closely as possible
+        synthetic = self._restore_dtypes(synthetic)
+
+        return synthetic.reset_index(drop=True)
 
     def save(self, path: str) -> None:
-        if not self.is_fitted or self.model is None:
-            raise ValueError("Model not fitted.")
-        os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
-        self.model.save(path)
-        
-        import pickle
-        meta_path = str(path) + "_meta.pkl"
-        with open(meta_path, "wb") as f:
-            pickle.dump({
-                "columns": self._columns,
-                "target_column": self.target_column
-            }, f)
-        logging.info("SMOTE model saved to %s", path)
+        if not self._fitted:
+            raise RuntimeError("Call fit() before save().")
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with open(path, "wb") as f:
+            pickle.dump(self.__dict__, f)
 
     @classmethod
     def load(cls, path: str) -> "SMOTEGenerator":
-        if not SYNTHYVERSE_AVAILABLE:
-            raise ImportError("synthyverse is required. Install with: pip install synthyverse")
-
+        with open(path, "rb") as f:
+            state = pickle.load(f)
         instance = cls()
-        instance.model = SynthyverseSMOTE.load(path)
-        
-        import pickle
-        meta_path = str(path) + "_meta.pkl"
-        if os.path.exists(meta_path):
-            with open(meta_path, "rb") as f:
-                state = pickle.load(f)
-            instance._columns = state["columns"]
-            instance.target_column = state["target_column"]
-            
-        instance.is_fitted = True
+        instance.__dict__.update(state)
         return instance
+
+    # ------------------------------------------------------------------
+    # Helpers
+    # ------------------------------------------------------------------
+
+    def _drop_useless_columns(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Drop columns that carry no interpolation signal."""
+        drop = []
+        for col in df.columns:
+            # All-null
+            if df[col].isna().all():
+                drop.append(col)
+            # UUID-like strings (high cardinality object cols with unique values)
+            elif df[col].dtype == "object" and df[col].nunique() == len(df):
+                drop.append(col)
+        if drop:
+            df = df.drop(columns=drop)
+        return df
+
+    def _make_binary_target(self, X: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+        """Create a balanced-ish binary target for SMOTE using median split."""
+        # Try each column until we get a split with both classes present
+        for col_idx in range(X.shape[1]):
+            col = X[:, col_idx]
+            if np.isnan(col).all():
+                continue
+            median = np.nanmedian(col)
+            y = (col > median).astype(int)
+            if 0 < y.sum() < len(y):
+                return y
+        # Fallback: random 50/50 split
+        y = np.zeros(len(X), dtype=int)
+        half = len(X) // 2
+        y[rng.choice(len(X), size=half, replace=False)] = 1
+        return y
+
+    def _restore_dtypes(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Best-effort dtype restoration after float round-trip."""
+        for col in df.columns:
+            if col in self._cat_cols:
+                continue  # already decoded to strings
+            try:
+                # Try integer if values are whole numbers
+                numeric = pd.to_numeric(df[col], errors="coerce")
+                if numeric.notna().all() and (numeric == numeric.round()).all():
+                    df[col] = numeric.astype("Int64")
+                else:
+                    df[col] = numeric
+            except Exception:
+                pass
+        return df
